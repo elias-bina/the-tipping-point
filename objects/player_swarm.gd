@@ -56,12 +56,19 @@ func rule(i: int, center: Vector2):
 	var direction_to_center = center - unit.get_global_position();
 	return direction_to_center;
 	
+
+func get_force_of_repulsion(i, units):
+	printerr("ABSTRACT FUNCTION CALLED");
+
 	
 func _process(delta: float):
 	update_center_of_swarm(delta);
 	for i in range(0, nb_of_units):
 		var velocity = rule(i, center_of_swarm) * swarm_attrction_factor;
 		units[i].set_linear_velocity(velocity);
+		
+		var force_of_repulsion = units[i].get_force_of_repulsion(i, units, center_of_swarm);
+		units[i].apply_central_force(force_of_repulsion);
 
 
 func update_center_of_swarm(delta: float):

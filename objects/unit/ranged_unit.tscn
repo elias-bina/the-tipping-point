@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://vc70yry1rvs1"]
+[gd_scene load_steps=4 format=3 uid="uid://vc70yry1rvs1"]
 
+[ext_resource type="Script" path="res://objects/unit/ranged_unit.gd" id="1_if5kw"]
 [ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/range.png" id="1_tntkf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ecqab"]
 
 [node name="RangedUnit" type="RigidBody2D"]
+script = ExtResource("1_if5kw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.200332, 0.2)
