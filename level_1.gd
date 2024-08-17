@@ -16,3 +16,5 @@ func _ready() -> void:
 func _on_player_move(pos: Vector2):
 	if enemySpawner:
 		enemySpawner.set_player_pos(pos)
+ 
+ 

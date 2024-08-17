@@ -95,6 +95,7 @@ func _on_input_manager_move_horizontal_update(move_x: float) -> void:
 
 
 func _on_input_manager_activate_dash() -> void:
+	$DashSound.play()
 	curr_velocity = depl_dir.normalized() * dash_speed
 
 
@@ -103,11 +104,14 @@ func _on_input_manager_activate_attack() -> void:
 		if unit is MeleeUnit:
 			#TODO: Viser ennemi
 			unit.attack()
+	$SlashSound.play()
 
 
 func _on_input_manager_activate_parry() -> void:
+	$ParrySound.play()
 	print("parry")
 
 
 func _on_input_manager_activate_shoot() -> void:
+	$ShotSound.play()
 	print("shoot")
