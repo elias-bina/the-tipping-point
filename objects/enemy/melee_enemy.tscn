@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh56dw4wgwvha"]
+
+[ext_resource type="Script" path="res://objects/enemy/melee_enemy.gd" id="1_scvsh"]
+[ext_resource type="Texture2D" uid="uid://cw162q56ggqbf" path="res://assets/melee.png" id="2_idido"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ersew"]
+
+[node name="MeleeEnemy" type="CharacterBody2D"]
+script = ExtResource("1_scvsh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+self_modulate = Color(0.485368, 0, 0.207082, 1)
+shape = SubResource("RectangleShape2D_ersew")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.55, 0.55, 0.55, 1)
+show_behind_parent = true
+position = Vector2(13, 2)
+scale = Vector2(0.216216, 0.213904)
+texture = ExtResource("2_idido")

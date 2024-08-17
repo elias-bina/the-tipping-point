@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx8rudn30ie6"]
+
+[ext_resource type="Script" path="res://objects/enemy/ranged_enemy.gd" id="1_blnds"]
+[ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/range.png" id="2_cpttf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juv4i"]
+
+[node name="MeleeEnemy" type="CharacterBody2D"]
+script = ExtResource("1_blnds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.55, 0.55, 0.55, 1)
+show_behind_parent = true
+position = Vector2(6.36419, 6.70202)
+scale = Vector2(0.166366, 0.163102)
+texture = ExtResource("2_cpttf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+self_modulate = Color(0.485368, 0, 0.207082, 1)
+shape = SubResource("CircleShape2D_juv4i")

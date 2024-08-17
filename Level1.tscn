@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=8 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_gk63y"]
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
 [ext_resource type="Texture2D" uid="uid://w5pfh0j6ss24" path="res://icon.svg" id="2_iir3x"]
 [ext_resource type="Script" path="res://label.gd" id="3_f73k4"]
 [ext_resource type="PackedScene" uid="uid://cd65wwi4htatw" path="res://InputManager.tscn" id="4_w47bo"]
+[ext_resource type="PackedScene" uid="uid://b3h3cb36jn0o7" path="res://objects/enemy_spawner.tscn" id="5_q1a8k"]
 [ext_resource type="Script" path="res://objects/player_swarm.gd" id="7_jmmy2"]
 
-[node name="Node2D" type="Node2D"]
+[node name="GameRoom" type="Node2D"]
 script = ExtResource("1_gk63y")
 
 [node name="Isaac\'sRoom1" type="Sprite2D" parent="."]
@@ -26,6 +27,8 @@ offset_right = 610.0
 offset_bottom = 174.0
 text = "Hehe Boi"
 script = ExtResource("3_f73k4")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_q1a8k")]
 
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("7_jmmy2")
