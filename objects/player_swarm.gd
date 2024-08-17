@@ -1,5 +1,7 @@
 extends Node
 
+signal player_move(pos : Vector2)
+
 var melee_unit = preload("res://objects/unit/melee_unit.tscn");
 var ranged_unit = preload("res://objects/unit/ranged_unit.tscn");
 var shield_unit = preload("res://objects/unit/shield_unit.tscn");
@@ -13,7 +15,7 @@ var center_of_swarm = Vector2(400, 400);
 
 ## ------------- Swarm vars -------------
 
-const swarm_attrction_factor = 4
+const swarm_attrction_factor = 5
 
 ## ------------- Cursor vars -------------
 
@@ -79,6 +81,7 @@ func update_center_of_swarm(delta: float):
 	
 	center_of_swarm += curr_velocity * delta
 	cursorNode.position = center_of_swarm
+	player_move.emit(center_of_swarm)
 
 
 func _on_input_manager_move_vertical_update(move_y: float) -> void:
