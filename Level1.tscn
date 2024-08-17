@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=21 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_gk63y"]
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
@@ -12,8 +12,14 @@
 [ext_resource type="AudioStream" uid="uid://02lgttc2my5d" path="res://assets/sfx/gun_pistol_shot_silenced_01.wav" id="10_mi3yb"]
 [ext_resource type="AudioStream" uid="uid://cmf6bvljdeqml" path="res://assets/sfx/bullet_impact_concrete_brick_01.wav" id="11_8rhuy"]
 [ext_resource type="AudioStream" uid="uid://dol7u2cgs77an" path="res://assets/music/GamejamShortSong.wav" id="12_1alpw"]
+[ext_resource type="AudioStream" uid="uid://sbbf0yhk7co" path="res://assets/sfx/ui_menu_button_beep_08.wav" id="12_uqdjh"]
+[ext_resource type="AudioStream" uid="uid://dcnm5i378uf63" path="res://assets/sfx/knife_sharpen_01.wav" id="13_6gdck"]
 [ext_resource type="AudioStream" uid="uid://b4s0yhnuxpbvh" path="res://assets/sfx/voice_male_grunt_pain_death_04.wav" id="13_ahs7i"]
 [ext_resource type="AudioStream" uid="uid://b54pxmaxlxiho" path="res://assets/sfx/voice_male_grunt_pain_01.wav" id="14_uye1p"]
+[ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/feathers_t.png" id="16_gagif"]
+[ext_resource type="Script" path="res://objects/gui/dash_charges_gui.gd" id="16_wfalr"]
+[ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="17_as0k7"]
+[ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/war_t.png" id="18_e8plp"]
 
 [node name="GameRoom" type="Node2D"]
 script = ExtResource("1_gk63y")
@@ -63,6 +69,20 @@ volume_db = -9.409
 stream = ExtResource("11_8rhuy")
 pitch_scale = 0.79
 
+[node name="DashCooldown" type="Timer" parent="PlayerSwarm"]
+one_shot = true
+
+[node name="SwordCooldown" type="Timer" parent="PlayerSwarm"]
+one_shot = true
+
+[node name="DashChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("12_uqdjh")
+volume_db = -13.867
+
+[node name="SwordChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("13_6gdck")
+volume_db = -13.867
+
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_1alpw")
 volume_db = -6.156
@@ -76,6 +96,61 @@ volume_db = -6.438
 stream = ExtResource("14_uye1p")
 volume_db = -4.457
 
+[node name="Gui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="DashChargesGui" type="Control" parent="Gui"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("16_wfalr")
+
+[node name="DashChargesNbLabel" type="RichTextLabel" parent="Gui/DashChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 110.0
+offset_top = 594.0
+offset_right = 166.0
+offset_bottom = 623.0
+text = "1"
+
+[node name="DashChargedIcon" type="TextureRect" parent="Gui/DashChargesGui"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 518.0
+offset_right = 1041.0
+offset_bottom = 1542.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("16_gagif")
+
+[node name="SwordChargesGui" type="Control" parent="Gui"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.71
+offset_right = 152.71
+offset_bottom = 40.0
+script = ExtResource("17_as0k7")
+
+[node name="SwordChargesNbLabel" type="RichTextLabel" parent="Gui/SwordChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 110.0
+offset_top = 594.0
+offset_right = 166.0
+offset_bottom = 623.0
+text = "1"
+
+[node name="SwordChargedIcon" type="TextureRect" parent="Gui/SwordChargesGui"]
+layout_mode = 0
+offset_left = 8.305
+offset_top = 518.0
+offset_right = 1032.31
+offset_bottom = 1542.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("18_e8plp")
+
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
 [connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
@@ -83,3 +158,7 @@ volume_db = -4.457
 [connection signal="ferme_ta_gueule" from="InputManager" to="Label" method="_on_input_manager_ferme_ta_gueule"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
+[connection signal="dash_update" from="PlayerSwarm" to="Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
+[connection signal="sword_update" from="PlayerSwarm" to="Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
+[connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="PlayerSwarm/SwordCooldown" to="PlayerSwarm" method="_on_sword_cooldown_timeout"]
