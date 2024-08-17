@@ -17,8 +17,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_vertical_input()
 	update_horizontal_input()
+	update_swarm_input()
+	
 
-
+func update_swarm_input() -> void:
+	pass
 
 func update_vertical_input() -> void:
 			
