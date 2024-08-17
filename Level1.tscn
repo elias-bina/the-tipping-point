@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=6 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
 [ext_resource type="Script" path="res://normal-man.gd" id="2_21gp4"]
 [ext_resource type="Texture2D" uid="uid://w5pfh0j6ss24" path="res://icon.svg" id="2_iir3x"]
+[ext_resource type="Script" path="res://label.gd" id="3_f73k4"]
+[ext_resource type="PackedScene" uid="uid://t5iapaebwwul" path="res://InputManager.tscn" id="4_w47bo"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,15 +13,24 @@ position = Vector2(576.388, 372.25)
 scale = Vector2(0.960594, 0.960594)
 texture = ExtResource("1_sdw6h")
 
+[node name="InputManager" parent="." instance=ExtResource("4_w47bo")]
+position = Vector2(390, 80)
+scale = Vector2(1.09375, 1.09375)
+
 [node name="Label" type="Label" parent="."]
 offset_left = 540.0
 offset_top = 151.0
 offset_right = 610.0
 offset_bottom = 174.0
 text = "Hehe Boi"
+script = ExtResource("3_f73k4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(574, 588)
 scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("2_iir3x")
 script = ExtResource("2_21gp4")
+
+[connection signal="ferme_ta_gueule" from="InputManager" to="Label" method="_on_input_manager_ferme_ta_gueule"]
+[connection signal="move_horizontal_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_vertical_update"]
+[connection signal="move_vertical_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_horizontal_update"]

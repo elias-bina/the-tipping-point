@@ -3,54 +3,43 @@ extends Sprite2D
 func _init() -> void:
 	print("Te mere en slip")
 
-const min_speed = 50
-const max_speed = 400
-const acceleration_frames = 10
+const max_speed: int = 400
+const acceleration_frames: int = 10
 
-var speed = 20
-var prev_speed = min_speed
-var target_speed = min_speed
+var speed: int = 0
+var prev_speed: int = 0
+var target_speed: int = 0
 
-var accelerate = false
-var decelerate = false
+var accelerate: bool = false
+var decelerate: bool = false
 
-var angular_speed = PI * 3
+
+
+
+var depl_dir: Vector2i = Vector2i(0,0)
+
+var prev_velocity: Vector2 =  Vector2(0.0, 0.0)
+var curr_velocity: Vector2 =  Vector2(0.0, 0.0)
+var target_velocity: Vector2 =  Vector2(0.0, 0.0)
 
 func _process(delta: float) -> void:
-	var direction = 0
-	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("player_left"):
-		direction = -1
-	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("player_right"):
-		direction = 1
-		
-		
-	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("player_up"):
-		if not accelerate:
-			prev_speed = speed
-			target_speed = max_speed
-			decelerate = false
-			accelerate = true
-	else:
-		if Input.is_action_pressed("ui_down") or Input.is_action_pressed("player_down"):
-			if not decelerate:
-				prev_speed = speed
-				target_speed = -max_speed
-				decelerate = true
-				accelerate = false
-		else:
-			if accelerate or decelerate:
-				prev_speed = speed
-				target_speed = min_speed
-				decelerate = false
-				accelerate = false
-	
-	
-	if sign(target_speed - speed) == sign(target_speed - prev_speed):
-		speed += (target_speed - prev_speed) / acceleration_frames
 
 
-	rotation += angular_speed * direction * delta
+	if sign(target_velocity.x - curr_velocity.x) == sign(target_velocity.x - prev_velocity.x) and sign(target_velocity.y - curr_velocity.y) == sign(target_velocity.y - prev_velocity.y):
+		curr_velocity += (target_velocity - prev_velocity) / acceleration_frames
 
-	var velocity = Vector2.UP.rotated(rotation) * speed
-	position += velocity * delta
-	
+	#var velocity: Vector2 = Vector2.UP.rotated(rotation) * speed
+	position += curr_velocity * delta
+
+
+
+func _on_input_manager_move_vertical_update(move_y: int) -> void:
+	print("BOUGE GERALDINE : %d" % move_y)
+	depl_dir.y = move_y
+	target_velocity.y = depl_dir.y * target_speed
+
+
+func _on_input_manager_move_horizontal_update(move_x: int) -> void:
+	print("BOUGE GERMAIN : %d" %move_x)
+	depl_dir.x = move_x
+	target_velocity.x = depl_dir.x * target_speed
