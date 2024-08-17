@@ -32,5 +32,5 @@ texture = ExtResource("2_iir3x")
 script = ExtResource("2_21gp4")
 
 [connection signal="ferme_ta_gueule" from="InputManager" to="Label" method="_on_input_manager_ferme_ta_gueule"]
-[connection signal="move_horizontal_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_vertical_update"]
-[connection signal="move_vertical_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_horizontal_update"]
+[connection signal="move_horizontal_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_horizontal_update"]
+[connection signal="move_vertical_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_vertical_update"]
