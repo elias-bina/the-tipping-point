@@ -1,5 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ct1b7aquoduie"]
 
+[ext_resource type="Script" path="res://level_1.gd" id="1_gk63y"]
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
 [ext_resource type="Script" path="res://normal-man.gd" id="2_21gp4"]
 [ext_resource type="Texture2D" uid="uid://w5pfh0j6ss24" path="res://icon.svg" id="2_iir3x"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cd65wwi4htatw" path="res://InputManager.tscn" id="4_w47bo"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_gk63y")
 
 [node name="Isaac\'sRoom1" type="Sprite2D" parent="."]
 position = Vector2(576.388, 372.25)
