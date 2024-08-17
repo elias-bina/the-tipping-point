@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=7 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_gk63y"]
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
-[ext_resource type="Script" path="res://normal-man.gd" id="2_21gp4"]
 [ext_resource type="Texture2D" uid="uid://w5pfh0j6ss24" path="res://icon.svg" id="2_iir3x"]
 [ext_resource type="Script" path="res://label.gd" id="3_f73k4"]
 [ext_resource type="PackedScene" uid="uid://cd65wwi4htatw" path="res://InputManager.tscn" id="4_w47bo"]
@@ -28,21 +27,17 @@ offset_bottom = 174.0
 text = "Hehe Boi"
 script = ExtResource("3_f73k4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(574, 588)
-scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("2_iir3x")
-script = ExtResource("2_21gp4")
-
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("7_jmmy2")
 
-[connection signal="activate_attack" from="InputManager" to="Sprite2D" method="_on_input_manager_activate_attack"]
-[connection signal="activate_dash" from="InputManager" to="Sprite2D" method="_on_input_manager_activate_dash"]
-[connection signal="activate_parry" from="InputManager" to="Sprite2D" method="_on_input_manager_activate_parry"]
-[connection signal="activate_shoot" from="InputManager" to="Sprite2D" method="_on_input_manager_activate_shoot"]
+[node name="PlayerCursor" type="Sprite2D" parent="PlayerSwarm"]
+scale = Vector2(0.414063, 0.414063)
+texture = ExtResource("2_iir3x")
+
+[connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
+[connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
+[connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
+[connection signal="activate_shoot" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_shoot"]
 [connection signal="ferme_ta_gueule" from="InputManager" to="Label" method="_on_input_manager_ferme_ta_gueule"]
-[connection signal="move_horizontal_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
-[connection signal="move_vertical_update" from="InputManager" to="Sprite2D" method="_on_input_manager_move_vertical_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
