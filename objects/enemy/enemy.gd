@@ -19,7 +19,6 @@ func _physics_process(delta: float) -> void:
 
 func take_hit(nb_hp: int):
 	curr_hp -= nb_hp
-	print("remain %d" % curr_hp)
 	if curr_hp <= 0:
 		$/root/GameRoom/EnemyDeathSound.play()
 		queue_free()
