@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bytgdoke0axr7"]
+[gd_scene load_steps=4 format=3 uid="uid://bytgdoke0axr7"]
 
 [ext_resource type="Texture2D" uid="uid://cw162q56ggqbf" path="res://assets/melee.png" id="1_2s28j"]
+[ext_resource type="Script" path="res://objects/unit/melee_unit.gd" id="1_cvpc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12vgu"]
 size = Vector2(31.8524, 90.7706)
 
 [node name="MeleeUnit" type="RigidBody2D"]
+script = ExtResource("1_cvpc6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.200332, 0.2)

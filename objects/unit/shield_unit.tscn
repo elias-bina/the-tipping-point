@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dajobbh0rl5jw"]
+[gd_scene load_steps=3 format=3 uid="uid://dajobbh0rl5jw"]
 
+[ext_resource type="Script" path="res://objects/unit/shield_unit.gd" id="1_gpuvh"]
 [ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/shield.png" id="1_q6otd"]
 
 [node name="ShieldUnit" type="RigidBody2D"]
+script = ExtResource("1_gpuvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.200332, 0.2)
