@@ -18,20 +18,20 @@ var angular_speed = PI * 3
 
 func _process(delta: float) -> void:
 	var direction = 0
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("player_left"):
 		direction = -1
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("player_right"):
 		direction = 1
 		
 		
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("player_up"):
 		if not accelerate:
 			prev_speed = speed
 			target_speed = max_speed
 			decelerate = false
 			accelerate = true
 	else:
-		if Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("ui_down") or Input.is_action_pressed("player_down"):
 			if not decelerate:
 				prev_speed = speed
 				target_speed = -max_speed
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 				accelerate = false
 	
 	
-	if speed != target_speed:
+	if sign(target_speed - speed) == sign(target_speed - prev_speed):
 		speed += (target_speed - prev_speed) / acceleration_frames
 
 
