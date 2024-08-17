@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm80tfpf22fi"]
-
-[ext_resource type="Script" path="res://objects/player_swarm.gd" id="1_tir6d"]
+[gd_scene format=3 uid="uid://dm80tfpf22fi"]
 
 [node name="PlayerSwarm" type="Node"]
-script = ExtResource("1_tir6d")
