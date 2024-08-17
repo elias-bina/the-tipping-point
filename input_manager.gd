@@ -2,8 +2,8 @@ extends Node2D
 
 signal ferme_ta_gueule
 
-signal move_vertical_update(move_y : int)
-signal move_horizontal_update(move_x : int)
+signal move_vertical_update(move_y : float)
+signal move_horizontal_update(move_x : float)
 
 signal activate_dash
 signal activate_attack
@@ -11,7 +11,7 @@ signal activate_shoot
 signal activate_parry
 
 
-static var move_direction:Vector2i = Vector2i(0,0)
+static var move_direction:Vector2 = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,37 +39,32 @@ func update_swarm_input():
 		return
 
 func update_vertical_input() -> void:
-			
-	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("player_up"):
-		if(move_direction.y > -1):
-			move_vertical_update.emit(-1)
-			move_direction.y = -1
+	# TODO: Optim, do not launch an event if still (hardcore w analog) 
+	if Input.is_action_pressed("player_up"):
+		move_direction.y = -Input.get_action_strength("player_up")
+		move_vertical_update.emit(move_direction.y)
 	else:
-		if Input.is_action_pressed("ui_down") or Input.is_action_pressed("player_down"):
-			if(move_direction.y < 1):
-				move_vertical_update.emit(1)
-				move_direction.y = 1
+		if Input.is_action_pressed("player_down"):
+			move_direction.y = Input.get_action_strength("player_down")
+			move_vertical_update.emit(move_direction.y)
 		else:
-			if(move_direction.y != 0):
-				move_vertical_update.emit(0)
-				move_direction.y = 0
+			move_direction.y = 0
+			move_vertical_update.emit(move_direction.y)
 
 
 
 func update_horizontal_input() -> void:
-	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("player_left"):
-		if(move_direction.x > -1):
-			move_horizontal_update.emit(-1)
-			move_direction.x = -1
+	# TODO: Optim, do not launch an event if still (hardcore w analog) 
+	if Input.is_action_pressed("player_left"):
+		move_direction.x = -Input.get_action_strength("player_left")
+		move_horizontal_update.emit(move_direction.x)
 	else:
-		if Input.is_action_pressed("ui_right") or Input.is_action_pressed("player_right"):
-			if(move_direction.x < 1):
-				move_horizontal_update.emit(1)
-				move_direction.x = 1
+		if Input.is_action_pressed("player_right"):
+			move_direction.x = Input.get_action_strength("player_right")
+			move_horizontal_update.emit(move_direction.x)
 		else:
-			if(move_direction.x != 0):
-				move_horizontal_update.emit(0)
-				move_direction.x = 0
+			move_direction.x = 0
+			move_horizontal_update.emit(move_direction.x)
 
 
 

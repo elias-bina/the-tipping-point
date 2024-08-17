@@ -3,7 +3,11 @@ extends Sprite2D
 func _init() -> void:
 	pass
 
-const max_speed: int = 400
+const base_speed: int = 400
+const dash_speed: int = 2500
+var curr_speed: int = 400
+
+
 const acceleration_frames: int = 10
 
 var depl_dir: Vector2 = Vector2(0,0)
@@ -14,24 +18,27 @@ var target_velocity: Vector2 =  Vector2(0.0, 0.0)
 
 
 func _process(delta: float) -> void:
-	curr_velocity = target_velocity
-	#var velocity: Vector2 = Vector2.UP.rotated(rotation) * speed
+	if(curr_velocity.length() <= base_speed):
+		curr_velocity = target_velocity
+	else:
+		curr_velocity += (target_velocity - curr_velocity) / acceleration_frames
+
 	position += curr_velocity * delta
 
 
 
-func _on_input_manager_move_vertical_update(move_y: int) -> void:
+func _on_input_manager_move_vertical_update(move_y: float) -> void:
 	depl_dir.y = move_y
-	target_velocity = depl_dir.normalized() * max_speed
+	target_velocity = depl_dir.normalized() * curr_speed
 
 
-func _on_input_manager_move_horizontal_update(move_x: int) -> void:
+func _on_input_manager_move_horizontal_update(move_x: float) -> void:
 	depl_dir.x = move_x
-	target_velocity = depl_dir.normalized() * max_speed
+	target_velocity = depl_dir.normalized() * curr_speed
 
 
 func _on_input_manager_activate_dash() -> void:
-	print("dash")
+	curr_velocity = depl_dir.normalized() * dash_speed
 
 
 func _on_input_manager_activate_attack() -> void:
