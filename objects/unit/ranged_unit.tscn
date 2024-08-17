@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://vc70yry1rvs1"]
+
+[ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/range.png" id="1_tntkf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecqab"]
+
+[node name="RangedUnit" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.200332, 0.2)
+texture = ExtResource("1_tntkf")
+region_enabled = true
+region_rect = Rect2(230.513, 78.657, 127.377, 137.625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(1.34718, 1.32961)
+shape = SubResource("CircleShape2D_ecqab")

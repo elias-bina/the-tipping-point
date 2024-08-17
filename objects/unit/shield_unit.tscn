@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dajobbh0rl5jw"]
+
+[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/shield.png" id="1_q6otd"]
+
+[node name="ShieldUnit" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.200332, 0.2)
+texture = ExtResource("1_q6otd")
+region_enabled = true
+region_rect = Rect2(203.351, 119.289, 180.316, 138.242)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(2.48906, 1.1081)
+polygon = PackedVector2Array(1.20528, -10.8293, 6.42814, 10.8293, -6.42814, 10.8293)
