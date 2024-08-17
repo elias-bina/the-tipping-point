@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://k5k2lin58nic"]
+
+[ext_resource type="Texture2D" uid="uid://d1nr0ytg320wc" path="res://assets/SwordSlash.png" id="1_m4fgb"]
+
+[node name="SwordSlash" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_m4fgb")
