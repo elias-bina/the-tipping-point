@@ -58,7 +58,7 @@ func rule(i: int, center: Vector2):
 	return direction_to_center;
 	
 
-func get_force_of_repulsion(i, units):
+func get_force_of_repulsion(_i, _units):
 	printerr("ABSTRACT FUNCTION CALLED");
 
 	
@@ -97,7 +97,10 @@ func _on_input_manager_activate_dash() -> void:
 
 
 func _on_input_manager_activate_attack() -> void:
-	print("attack")
+	for unit in units:
+		if unit is MeleeUnit:
+			#TODO: Viser ennemi
+			unit.attack()
 
 
 func _on_input_manager_activate_parry() -> void:
