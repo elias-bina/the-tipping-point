@@ -11,7 +11,6 @@ var units = [];
 var nb_of_units = 0;
 
 var unit_speed = 0.01;
-var center_of_swarm = Vector2(400, 400);
 
 # ------------- Movement vars -------------
 
@@ -77,10 +76,10 @@ func get_force_of_repulsion(_i, _units):
 func _process(delta: float):
 	update_center_of_swarm(delta);
 	for i in range(0, nb_of_units):
-		var velocity = rule(i, center_of_swarm) * swarm_attrction_factor;
+		var velocity = rule(i, cursorNode.position) * swarm_attrction_factor;
 		units[i].set_linear_velocity(velocity);
 		
-		var force_of_repulsion = units[i].get_force_of_repulsion(i, units, center_of_swarm);
+		var force_of_repulsion = units[i].get_force_of_repulsion(i, units, cursorNode.position);
 		units[i].apply_central_force(force_of_repulsion);
 
 
@@ -90,9 +89,8 @@ func update_center_of_swarm(delta: float):
 	else:
 		curr_velocity += (target_velocity - curr_velocity) / acceleration_frames
 	
-	center_of_swarm += curr_velocity * delta
-	cursorNode.position = center_of_swarm
-	player_move.emit(center_of_swarm)
+	cursorNode.move_and_collide(curr_velocity * delta);
+	player_move.emit(cursorNode.position)
 
 
 func _on_input_manager_move_vertical_update(move_y: float) -> void:
