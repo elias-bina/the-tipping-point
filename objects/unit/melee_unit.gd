@@ -1,4 +1,9 @@
-extends "res://objects/unit/unit.gd"
+extends Unit
+
+class_name MeleeUnit
+
+var sword_slash = preload("res://objects/projectiles/sword_slash.tscn");
+
 
 func get_force_of_repulsion(i, units, center):
 	var velocity_outwards_center = units[i].get_global_position() - center;
@@ -23,5 +28,14 @@ func get_force_of_repulsion(i, units, center):
 		
 	return Vector2(0, 0);
 
-func is_shield():
+func attack():
+	var slash = sword_slash.instantiate()
+	slash.set_global_position(Vector2(25,0))
+	add_child(slash)
+
+func is_melee():
 	return true;
+
+
+func _on_ennemy_detection_range_body_entered(body: Node2D) -> void:
+	look_at(body.position)
