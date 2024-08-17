@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=13 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_gk63y"]
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://b3h3cb36jn0o7" path="res://objects/enemy_spawner.tscn" id="5_q1a8k"]
 [ext_resource type="Texture2D" uid="uid://cmdiuplrm813x" path="res://assets/Cursor.png" id="7_g10x1"]
 [ext_resource type="Script" path="res://objects/player_swarm.gd" id="7_jmmy2"]
+[ext_resource type="AudioStream" uid="uid://bo0n1mfdu0d5o" path="res://assets/sfx/Sword 6.mp3" id="7_xksju"]
+[ext_resource type="AudioStream" uid="uid://dmgvht355n2cr" path="res://assets/sfx/FA_Whoosh_1_1.wav" id="9_0qmic"]
+[ext_resource type="AudioStream" uid="uid://02lgttc2my5d" path="res://assets/sfx/gun_pistol_shot_silenced_01.wav" id="10_mi3yb"]
+[ext_resource type="AudioStream" uid="uid://cmf6bvljdeqml" path="res://assets/sfx/bullet_impact_concrete_brick_01.wav" id="11_8rhuy"]
+[ext_resource type="AudioStream" uid="uid://dol7u2cgs77an" path="res://assets/music/GamejamShortSong.wav" id="12_1alpw"]
 
 [node name="GameRoom" type="Node2D"]
 script = ExtResource("1_gk63y")
@@ -39,6 +44,27 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("7_g10x1")
+
+[node name="SlashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("7_xksju")
+volume_db = -3.962
+
+[node name="DashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("9_0qmic")
+volume_db = -1.981
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("10_mi3yb")
+volume_db = -9.409
+
+[node name="ParrySound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("11_8rhuy")
+pitch_scale = 0.79
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_1alpw")
+volume_db = -6.156
+autoplay = true
 
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dajobbh0rl5jw"]
 
 [ext_resource type="Script" path="res://objects/unit/melee_unit.gd" id="1_y726m"]
-[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/shield.png" id="2_o8xij"]
+[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/melee.png" id="2_o8xij"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hipew"]
 radius = 16.0

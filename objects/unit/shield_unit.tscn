@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dajobbh0rl5jw"]
 
 [ext_resource type="Script" path="res://objects/unit/shield_unit.gd" id="1_gpuvh"]
-[ext_resource type="Texture2D" uid="uid://cw162q56ggqbf" path="res://assets/melee.png" id="2_ned5u"]
+[ext_resource type="Texture2D" uid="uid://cw162q56ggqbf" path="res://assets/shield.png" id="2_ned5u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnk1w"]
 radius = 12.0

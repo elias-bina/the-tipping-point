@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnenwntvdhaxn"
+path="res://.godot/imported/Wind 8 (fast).mp3-6f5e5f44fcf27fe1dcfe3d39bdbbda00.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Wind 8 (fast).mp3"
+dest_files=["res://.godot/imported/Wind 8 (fast).mp3-6f5e5f44fcf27fe1dcfe3d39bdbbda00.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
