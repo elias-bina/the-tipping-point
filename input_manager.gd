@@ -5,6 +5,11 @@ signal ferme_ta_gueule
 signal move_vertical_update(move_y : int)
 signal move_horizontal_update(move_x : int)
 
+signal activate_dash
+signal activate_attack
+signal activate_shoot
+signal activate_parry
+
 
 static var move_direction:Vector2i = Vector2i(0,0)
 
@@ -18,10 +23,20 @@ func _process(_delta: float) -> void:
 	update_vertical_input()
 	update_horizontal_input()
 	update_swarm_input()
-	
 
-func update_swarm_input() -> void:
-	pass
+func update_swarm_input():
+	if Input.is_action_just_pressed("player_dash"):
+		activate_dash.emit()
+		return
+	if Input.is_action_just_pressed("player_attack"):
+		activate_attack.emit()
+		return
+	if Input.is_action_just_pressed("player_shoot"):
+		activate_shoot.emit()
+		return
+	if Input.is_action_just_pressed("player_parry"):
+		activate_parry.emit()
+		return
 
 func update_vertical_input() -> void:
 			
@@ -72,4 +87,7 @@ func _on_timer_timeout() -> void:
 	else:
 		scale *= 1.5
 	big = not big;
-	print("Jaag")
+
+
+func _on_activate_dash() -> void:
+	pass # Replace with function body.
