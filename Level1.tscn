@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct1b7aquoduie"]
+[gd_scene load_steps=4 format=3 uid="uid://ct1b7aquoduie"]
 
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
+[ext_resource type="Script" path="res://normal-man.gd" id="2_21gp4"]
+[ext_resource type="Texture2D" uid="uid://w5pfh0j6ss24" path="res://icon.svg" id="2_iir3x"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,3 +17,9 @@ offset_top = 151.0
 offset_right = 610.0
 offset_bottom = 174.0
 text = "Hehe Boi"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 588)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("2_iir3x")
+script = ExtResource("2_21gp4")
