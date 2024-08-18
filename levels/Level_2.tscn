@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=27 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -15,10 +15,14 @@
 [ext_resource type="AudioStream" uid="uid://b4s0yhnuxpbvh" path="res://assets/sfx/voice_male_grunt_pain_death_04.wav" id="11_0xa3y"]
 [ext_resource type="AudioStream" uid="uid://dcnm5i378uf63" path="res://assets/sfx/knife_sharpen_01.wav" id="11_aopon"]
 [ext_resource type="AudioStream" uid="uid://b54pxmaxlxiho" path="res://assets/sfx/voice_male_grunt_pain_01.wav" id="12_woopa"]
+[ext_resource type="AudioStream" uid="uid://dlvgyc4luedyx" path="res://assets/sfx/gun_pistol_insert_mag_02.wav" id="13_25rva"]
 [ext_resource type="Script" path="res://objects/gui/dash_charges_gui.gd" id="13_cpkoq"]
+[ext_resource type="AudioStream" uid="uid://djseom22trx3g" path="res://assets/sfx/AC_Funny_Riser_02.wav" id="13_nnsfb"]
 [ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/sprites/feathers_t.png" id="14_ayfbp"]
 [ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="15_7hkf3"]
 [ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/sprites/war_t.png" id="16_lf0ep"]
+[ext_resource type="Script" path="res://objects/gui/gun_charges_gui.gd" id="18_smt2r"]
+[ext_resource type="Texture2D" uid="uid://cu0txuuhvb223" path="res://assets/sprites/target_t.png" id="21_aas52"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd5t2"]
 texture = ExtResource("1_msaub")
@@ -659,7 +663,11 @@ tile_set = SubResource("TileSet_0poh6")
 position = Vector2(390, 80)
 scale = Vector2(1.09375, 1.09375)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("3_x4grm")]
+[node name="EnemySpawners" type="Node2D" parent="."]
+
+[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-1044, -236)
+metadata/spawn_pos = Vector2(-1055, -242)
 
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("3_swjt7")
@@ -709,6 +717,9 @@ one_shot = true
 [node name="SwordCooldown" type="Timer" parent="PlayerSwarm"]
 one_shot = true
 
+[node name="GunCooldown" type="Timer" parent="PlayerSwarm"]
+one_shot = true
+
 [node name="DashChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("10_t61y0")
 volume_db = -11.39
@@ -716,6 +727,13 @@ volume_db = -11.39
 [node name="SwordChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("11_aopon")
 volume_db = -13.867
+
+[node name="GunChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("13_25rva")
+volume_db = -13.867
+
+[node name="EnrollEnnemySound" type="AudioStreamPlayer" parent="PlayerSwarm"]
+stream = ExtResource("13_nnsfb")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_6a1h8")
@@ -738,49 +756,51 @@ layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui"]
-layout_mode = 0
-offset_left = -0.666667
-offset_top = 354.667
-offset_right = 22.3333
-offset_bottom = 377.667
-scale = Vector2(0.7, 0.7)
-
-[node name="DashChargesGui" type="Control" parent="CanvasLayer/Gui/HBoxContainer"]
+[node name="GunChargesGui" type="Control" parent="CanvasLayer/Gui"]
 layout_mode = 2
-script = ExtResource("13_cpkoq")
-metadata/_edit_use_anchors_ = true
+anchors_preset = 0
+offset_left = 113.43
+offset_top = 325.715
+offset_right = 113.43
+offset_bottom = 426.715
+script = ExtResource("18_smt2r")
 
-[node name="DashChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/HBoxContainer/DashChargesGui"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 90.605
-offset_top = 80.695
-offset_right = 146.605
-offset_bottom = 109.695
-text = "1"
-
-[node name="DashChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/HBoxContainer/DashChargesGui"]
-layout_mode = 1
-offset_right = 1024.0
-offset_bottom = 1024.0
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("14_ayfbp")
-
-[node name="SwordChargesGui" type="Control" parent="CanvasLayer/Gui/HBoxContainer"]
-layout_mode = 2
-script = ExtResource("15_7hkf3")
-
-[node name="SwordChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/HBoxContainer/SwordChargesGui"]
+[node name="GunChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/GunChargesGui"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 offset_left = 204.27
 offset_top = 80.695
 offset_right = 260.27
 offset_bottom = 109.695
-text = "1"
+text = "3"
 
-[node name="SwordChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/HBoxContainer/SwordChargesGui"]
+[node name="GunChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/GunChargesGui"]
+layout_mode = 1
+offset_left = 104.375
+offset_right = 1128.38
+offset_bottom = 1024.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("21_aas52")
+
+[node name="SwordChargesGui" type="Control" parent="CanvasLayer/Gui"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 2.66
+offset_top = 323.125
+offset_right = 2.66
+offset_bottom = 424.125
+script = ExtResource("15_7hkf3")
+
+[node name="SwordChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/SwordChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+offset_left = 204.27
+offset_top = 80.695
+offset_right = 260.27
+offset_bottom = 109.695
+text = "3"
+
+[node name="SwordChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/SwordChargesGui"]
 layout_mode = 1
 offset_left = 104.375
 offset_right = 1128.38
@@ -788,14 +808,41 @@ offset_bottom = 1024.0
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("16_lf0ep")
 
+[node name="DashChargesGui" type="Control" parent="CanvasLayer/Gui"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 321.91
+offset_right = 110.065
+offset_bottom = 422.91
+script = ExtResource("13_cpkoq")
+metadata/_edit_use_anchors_ = true
+
+[node name="DashChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/DashChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 90.605
+offset_top = 80.695
+offset_right = 146.605
+offset_bottom = 109.695
+text = "3"
+
+[node name="DashChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/DashChargesGui"]
+layout_mode = 1
+offset_right = 1024.0
+offset_bottom = 1024.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("14_ayfbp")
+
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
 [connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
 [connection signal="activate_shoot" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_shoot"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
-[connection signal="add_one_unit" from="EnemySpawner" to="PlayerSwarm" method="_on_enemy_spawner_add_one_unit"]
-[connection signal="dash_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/DashChargesGui" method="_on_player_swarm_dash_update"]
-[connection signal="sword_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/SwordChargesGui" method="_on_player_swarm_sword_update"]
+[connection signal="dash_update" from="PlayerSwarm" to="CanvasLayer/Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
+[connection signal="gun_update" from="PlayerSwarm" to="CanvasLayer/Gui/GunChargesGui" method="_on_player_swarm_gun_update"]
+[connection signal="sword_update" from="PlayerSwarm" to="CanvasLayer/Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="PlayerSwarm/SwordCooldown" to="PlayerSwarm" method="_on_sword_cooldown_timeout"]
+[connection signal="timeout" from="PlayerSwarm/GunCooldown" to="PlayerSwarm" method="_on_gun_cooldown_timeout"]

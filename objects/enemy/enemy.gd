@@ -20,7 +20,7 @@ func _init() -> void:
 	curr_hp = max_hp
 
 func _physics_process(delta: float) -> void:
-	velocity = (targetPos - position).normalized() * delta * max_speed
+	velocity = (targetPos - global_position).normalized() * delta * max_speed
 	move_and_slide()
 
 

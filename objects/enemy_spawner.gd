@@ -26,6 +26,10 @@ func set_player_pos(pos : Vector2):
 			child.set_target(pos)
 
 func _on_timer_timeout():
+	
+	if((self.global_position - player_pos).length() < 500):
+		return;
+		
 	var enemy = melee_enemy.instantiate()
 	enemy.set_global_position(Vector2(randi_range(0, 400), randi_range(0, 400)))
 	enemy.spawn_corpse.connect(_on_spawn_corpse)
