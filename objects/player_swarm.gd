@@ -4,6 +4,7 @@ signal player_move(pos: Vector2)
 signal dash_update(nb_charges: int)
 signal sword_update(nb_charges: int)
 signal gun_update(nb_charges: int)
+signal enroll_update(nb_charges: int, max_people: int)
 
 var melee_unit = preload("res://objects/unit/melee_unit.tscn");
 var ranged_unit = preload("res://objects/unit/ranged_unit.tscn");
@@ -43,6 +44,7 @@ var sword_charges: int = 3
 var max_gun_charges: int = 3
 var gun_charges: int = 3
 
+var max_people_army = 50
 
 func initialize_positions(screen_range, nb_of_melee, nb_of_ranged, nb_of_shield):
 	randomize();
@@ -170,15 +172,17 @@ func _on_gun_cooldown_timeout() -> void:
 
 
 func _on_enemy_spawner_add_one_unit(pos: Vector2, enemy_type: int) -> void:
-	var enemy_converted = null
-	match enemy_type:
-		EnemyType.MELEE:
-			enemy_converted = melee_unit.instantiate()
-		EnemyType.RANGED:
-			enemy_converted = ranged_unit.instantiate()
+	if units.size() < max_people_army:
+		var enemy_converted = null
+		match enemy_type:
+			EnemyType.MELEE:
+				enemy_converted = melee_unit.instantiate()
+			EnemyType.RANGED:
+				enemy_converted = ranged_unit.instantiate()
 
-	if enemy_converted :
-		$EnrollEnnemySound.play()
-		enemy_converted.set_global_position(pos)
-		call_deferred("add_child", enemy_converted)
-		units.append(enemy_converted)
+		if enemy_converted :
+			$EnrollEnnemySound.play()
+			enemy_converted.set_global_position(pos)
+			call_deferred("add_child", enemy_converted)
+			units.append(enemy_converted)
+			enroll_update.emit(units.size(), max_people_army)
