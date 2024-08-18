@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx772s1wg8hly"
-path="res://.godot/imported/knight2.png-d3471ee2b1d9b6734e9da4d57fcce34c.ctex"
+uid="uid://dy783et64e0p2"
+path="res://.godot/imported/knight4.png-207fcb24cf62e021dfd761fff6c7efbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/melee/knight2.png"
-dest_files=["res://.godot/imported/knight2.png-d3471ee2b1d9b6734e9da4d57fcce34c.ctex"]
+source_file="res://assets/sprites/spritesheet/knight4.png"
+dest_files=["res://.godot/imported/knight4.png-207fcb24cf62e021dfd761fff6c7efbd.ctex"]
 
 [params]
 

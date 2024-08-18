@@ -1,21 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://vc70yry1rvs1"]
+[gd_scene load_steps=7 format=3 uid="uid://vc70yry1rvs1"]
 
 [ext_resource type="Script" path="res://objects/unit/ranged_unit.gd" id="1_if5kw"]
-[ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/sprites/range.png" id="1_tntkf"]
+[ext_resource type="Texture2D" uid="uid://bjsropqhmk50i" path="res://assets/sprites/spritesheet/full_26.png" id="2_hkkx5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ecqab"]
+radius = 14.8506
+
+[sub_resource type="Animation" id="Animation_pbntd"]
+resource_name = "filsdepute"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full26:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_hi4a4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full26:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yd5ww"]
+_data = {
+"RESET": SubResource("Animation_hi4a4"),
+"filsdepute": SubResource("Animation_pbntd")
+}
 
 [node name="RangedUnit" type="RigidBody2D"]
 z_index = 3
 script = ExtResource("1_if5kw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.200332, 0.2)
-texture = ExtResource("1_tntkf")
-region_enabled = true
-region_rect = Rect2(230.513, 78.657, 127.377, 137.625)
+[node name="Full26" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-0.500002, -1.5)
+scale = Vector2(2.1875, 2.1875)
+texture = ExtResource("2_hkkx5")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 scale = Vector2(1.34718, 1.32961)
 shape = SubResource("CircleShape2D_ecqab")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yd5ww")
+}

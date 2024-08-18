@@ -787,7 +787,7 @@ offset_top = 6.66667
 offset_right = 569.0
 offset_bottom = 31.6667
 max_value = 50.0
-value = 3.0
+value = 2.0
 show_percentage = false
 
 [node name="SwarmChargeLabel" type="Label" parent="CanvasLayer/Gui/SwarmChargeBar"]
@@ -798,7 +798,7 @@ offset_top = 32.6667
 offset_right = 648.0
 offset_bottom = 74.6667
 scale = Vector2(0.465, 0.465)
-text = "3 Enrolled people / 50"
+text = "2 Enrolled people / 50"
 label_settings = SubResource("LabelSettings_d2r0d")
 horizontal_alignment = 1
 vertical_alignment = 1

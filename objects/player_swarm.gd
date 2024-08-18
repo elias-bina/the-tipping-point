@@ -138,7 +138,6 @@ func _on_input_manager_activate_shoot() -> void:
 	if gun_charges > 0:
 		$ShotSound.play()
 		for unit in units:
-			print(unit.to_string())
 			if unit is RangedUnit:
 				unit.shoot(target_velocity.normalized())
 		gun_charges -= 1

@@ -1,13 +1,28 @@
 [gd_scene load_steps=8 format=3 uid="uid://dajobbh0rl5jw"]
 
 [ext_resource type="Script" path="res://objects/unit/melee_unit.gd" id="1_y726m"]
-[ext_resource type="Texture2D" uid="uid://ccakh5wb1tb5t" path="res://assets/sprites/melee/full_09.png" id="2_14340"]
+[ext_resource type="Texture2D" uid="uid://ccakh5wb1tb5t" path="res://assets/sprites/spritesheet/full_09.png" id="2_14340"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hipew"]
-radius = 16.0
+radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qixh"]
 radius = 109.073
+
+[sub_resource type="Animation" id="Animation_jta5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full09:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_32hy5"]
 resource_name = "down"
@@ -26,21 +41,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_jta5k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Full09:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjasf"]
 _data = {
 "RESET": SubResource("Animation_jta5k"),
@@ -55,7 +55,7 @@ script = ExtResource("1_y726m")
 [node name="Full09" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1, 2)
-scale = Vector2(2, 2)
+scale = Vector2(2.75, 2.75)
 texture = ExtResource("2_14340")
 hframes = 4
 

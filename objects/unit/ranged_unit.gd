@@ -6,6 +6,9 @@ class_name RangedUnit
 var bullet_preload = preload("res://objects/projectiles/bullet.tscn");
 var bullet_speed: float = 3000
 
+func _ready() -> void:
+	$AnimationPlayer.play("filsdepute")
+
 func get_force_of_repulsion(i, units, center):
 	var velocity_outwards_center = units[i].get_global_position() - center;
 	var amount_of_wrong_neighbors = 0;
@@ -29,7 +32,6 @@ func is_ranged():
 func shoot(target_direction: Vector2):
 	var bullet = bullet_preload.instantiate()
 	bullet.set_global_position(position)
-	print(linear_velocity)
 	
 	bullet.set_velocity(linear_velocity + target_direction.normalized() * bullet_speed )
 	get_parent().add_child(bullet)
