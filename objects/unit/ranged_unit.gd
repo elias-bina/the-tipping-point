@@ -1,4 +1,10 @@
-extends "res://objects/unit/unit.gd"
+extends Unit
+
+class_name RangedUnit
+
+
+var bullet_preload = preload("res://objects/projectiles/bullet.tscn");
+var bullet_speed: float = 3000
 
 func get_force_of_repulsion(i, units, center):
 	var velocity_outwards_center = units[i].get_global_position() - center;
@@ -19,4 +25,11 @@ func get_force_of_repulsion(i, units, center):
 
 func is_ranged():
 	return true;
+
+func shoot(target_direction: Vector2):
+	var bullet = bullet_preload.instantiate()
+	bullet.set_global_position(position)
+	print(linear_velocity)
 	
+	bullet.set_velocity(linear_velocity + target_direction.normalized() * bullet_speed )
+	get_parent().add_child(bullet)

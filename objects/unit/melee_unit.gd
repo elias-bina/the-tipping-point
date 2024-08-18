@@ -38,4 +38,4 @@ func is_melee():
 
 
 func _on_ennemy_detection_range_body_entered(body: Node2D) -> void:
-	look_at(body.position)
+	look_at(body.global_position)
