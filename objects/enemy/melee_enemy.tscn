@@ -10,7 +10,7 @@ script = ExtResource("1_scvsh")
 polygon = PackedVector2Array(1.005, -11.335, 11.55, 7.775, -14.91, 7.995)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.55, 0.55, 0.55, 1)
+self_modulate = Color(0.899397, 0.313346, 0.428008, 1)
 show_behind_parent = true
 position = Vector2(5, -2)
 scale = Vector2(0.166366, 0.163102)
