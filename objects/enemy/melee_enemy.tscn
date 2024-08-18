@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chch6mgmujjnu"]
 
 [ext_resource type="Script" path="res://objects/enemy/melee_enemy.gd" id="1_scvsh"]
-[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/melee.png" id="2_wudyi"]
+[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/sprites/melee.png" id="2_wudyi"]
 
 [node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_scvsh")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr60u2tusogc"
-path="res://.godot/imported/range.png-587f769e0a3e038a70b59e77e4e5430f.ctex"
+uid="uid://cgpillkiaskvj"
+path="res://.godot/imported/war_t.png-32fcd9dcc2f5fe8654f5431a13496122.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/range.png"
-dest_files=["res://.godot/imported/range.png-587f769e0a3e038a70b59e77e4e5430f.ctex"]
+source_file="res://assets/sprites/war_t.png"
+dest_files=["res://.godot/imported/war_t.png-32fcd9dcc2f5fe8654f5431a13496122.ctex"]
 
 [params]
 

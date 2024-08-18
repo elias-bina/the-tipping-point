@@ -10,15 +10,15 @@
 [ext_resource type="AudioStream" uid="uid://02lgttc2my5d" path="res://assets/sfx/gun_pistol_shot_silenced_01.wav" id="8_hh3om"]
 [ext_resource type="AudioStream" uid="uid://cmf6bvljdeqml" path="res://assets/sfx/bullet_impact_concrete_brick_01.wav" id="9_k3wy7"]
 [ext_resource type="AudioStream" uid="uid://dol7u2cgs77an" path="res://assets/music/GamejamShortSong.wav" id="10_6a1h8"]
-[ext_resource type="Texture2D" uid="uid://cmdiuplrm813x" path="res://assets/Cursor.png" id="10_bapw7"]
+[ext_resource type="Texture2D" uid="uid://cmdiuplrm813x" path="res://assets/sprites/Cursor.png" id="10_bapw7"]
 [ext_resource type="AudioStream" uid="uid://sbbf0yhk7co" path="res://assets/sfx/ui_menu_button_beep_08.wav" id="10_t61y0"]
 [ext_resource type="AudioStream" uid="uid://b4s0yhnuxpbvh" path="res://assets/sfx/voice_male_grunt_pain_death_04.wav" id="11_0xa3y"]
 [ext_resource type="AudioStream" uid="uid://dcnm5i378uf63" path="res://assets/sfx/knife_sharpen_01.wav" id="11_aopon"]
 [ext_resource type="AudioStream" uid="uid://b54pxmaxlxiho" path="res://assets/sfx/voice_male_grunt_pain_01.wav" id="12_woopa"]
 [ext_resource type="Script" path="res://objects/gui/dash_charges_gui.gd" id="13_cpkoq"]
-[ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/feathers_t.png" id="14_ayfbp"]
+[ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/sprites/feathers_t.png" id="14_ayfbp"]
 [ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="15_7hkf3"]
-[ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/war_t.png" id="16_lf0ep"]
+[ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/sprites/war_t.png" id="16_lf0ep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd5t2"]
 texture = ExtResource("1_msaub")

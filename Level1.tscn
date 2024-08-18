@@ -15,10 +15,10 @@
 [ext_resource type="AudioStream" uid="uid://dcnm5i378uf63" path="res://assets/sfx/knife_sharpen_01.wav" id="13_6gdck"]
 [ext_resource type="AudioStream" uid="uid://b4s0yhnuxpbvh" path="res://assets/sfx/voice_male_grunt_pain_death_04.wav" id="13_ahs7i"]
 [ext_resource type="AudioStream" uid="uid://b54pxmaxlxiho" path="res://assets/sfx/voice_male_grunt_pain_01.wav" id="14_uye1p"]
-[ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/feathers_t.png" id="16_gagif"]
+[ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/sprites/feathers_t.png" id="16_gagif"]
 [ext_resource type="Script" path="res://objects/gui/dash_charges_gui.gd" id="16_wfalr"]
 [ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="17_as0k7"]
-[ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/war_t.png" id="18_e8plp"]
+[ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/sprites/war_t.png" id="18_e8plp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sxhh0"]
 radius = 7.0
