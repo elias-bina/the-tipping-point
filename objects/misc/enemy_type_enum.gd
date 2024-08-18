@@ -2,7 +2,8 @@ class_name EnemyType
 
 enum
 {
+	NONE,
 	MELEE,
-	RANGE,
+	RANGED,
 	SHIELD
 }
