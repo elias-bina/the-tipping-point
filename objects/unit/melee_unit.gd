@@ -4,6 +4,8 @@ class_name MeleeUnit
 
 var sword_slash = preload("res://objects/projectiles/sword_slash.tscn");
 
+func _ready() -> void:
+	$AnimationPlayer.play("down")
 
 func get_force_of_repulsion(i, units, center):
 	var velocity_outwards_center = units[i].get_global_position() - center;

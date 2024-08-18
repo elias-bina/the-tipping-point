@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=29 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ixqnmmai6g2v" path="res://assets/sprites/feathers_t.png" id="14_ayfbp"]
 [ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="15_7hkf3"]
 [ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/sprites/war_t.png" id="16_lf0ep"]
+[ext_resource type="Script" path="res://levels/swarm_charge_bar.gd" id="18_p0hs4"]
 [ext_resource type="Script" path="res://objects/gui/gun_charges_gui.gd" id="18_smt2r"]
 [ext_resource type="Texture2D" uid="uid://cu0txuuhvb223" path="res://assets/sprites/target_t.png" id="21_aas52"]
 
@@ -643,6 +644,11 @@ sources/0 = SubResource("TileSetAtlasSource_jd5t2")
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnfw4"]
 radius = 27.4
 
+[sub_resource type="LabelSettings" id="LabelSettings_d2r0d"]
+font_size = 30
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="GameRoom" type="Node2D"]
 script = ExtResource("1_8cv4g")
 
@@ -667,6 +673,18 @@ scale = Vector2(1.09375, 1.09375)
 
 [node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
 position = Vector2(-1044, -236)
+metadata/spawn_pos = Vector2(-1055, -242)
+
+[node name="EnemySpawner2" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-978, 2085)
+metadata/spawn_pos = Vector2(-1055, -242)
+
+[node name="EnemySpawner3" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(2412, -339)
+metadata/spawn_pos = Vector2(-1055, -242)
+
+[node name="EnemySpawner4" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(1175, 784)
 metadata/spawn_pos = Vector2(-1055, -242)
 
 [node name="PlayerSwarm" type="Node" parent="."]
@@ -756,6 +774,35 @@ layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
 
+[node name="SwarmChargeBar" type="Control" parent="CanvasLayer/Gui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_p0hs4")
+
+[node name="SwarmChargeProgressBar" type="ProgressBar" parent="CanvasLayer/Gui/SwarmChargeBar"]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 6.66667
+offset_right = 569.0
+offset_bottom = 31.6667
+max_value = 50.0
+value = 3.0
+show_percentage = false
+
+[node name="SwarmChargeLabel" type="Label" parent="CanvasLayer/Gui/SwarmChargeBar"]
+texture_filter = 2
+layout_mode = 0
+offset_left = 318.0
+offset_top = 32.6667
+offset_right = 648.0
+offset_bottom = 74.6667
+scale = Vector2(0.465, 0.465)
+text = "3 Enrolled people / 50"
+label_settings = SubResource("LabelSettings_d2r0d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GunChargesGui" type="Control" parent="CanvasLayer/Gui"]
 layout_mode = 2
 anchors_preset = 0
@@ -841,6 +888,7 @@ texture = ExtResource("14_ayfbp")
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
 [connection signal="dash_update" from="PlayerSwarm" to="CanvasLayer/Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
+[connection signal="enroll_update" from="PlayerSwarm" to="CanvasLayer/Gui/SwarmChargeBar" method="_on_player_swarm_enroll_update"]
 [connection signal="gun_update" from="PlayerSwarm" to="CanvasLayer/Gui/GunChargesGui" method="_on_player_swarm_gun_update"]
 [connection signal="sword_update" from="PlayerSwarm" to="CanvasLayer/Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
