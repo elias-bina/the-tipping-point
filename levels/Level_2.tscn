@@ -647,8 +647,35 @@ scale = Vector2(1.09375, 1.09375)
 
 [node name="EnemySpawners" type="Node" parent="."]
 
+[node name="EnemySpawner10" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-1696, 1001)
+
+[node name="EnemySpawner8" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(1176, 672)
+
+[node name="EnemySpawner7" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(2486, 700)
+
+[node name="EnemySpawner9" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-84, 1882)
+
+[node name="EnemySpawner6" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-42, 941)
+
+[node name="EnemySpawner4" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(2354, -339)
+
+[node name="EnemySpawner3" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-1069, 2185)
+
+[node name="EnemySpawner2" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(618, -344)
+
 [node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
 position = Vector2(-1331, -172)
+
+[node name="EnemySpawner5" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(112, -269)
 
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("3_swjt7")

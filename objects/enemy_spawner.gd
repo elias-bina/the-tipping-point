@@ -1,6 +1,7 @@
 extends Node2D
 
 var player_pos : Vector2 = Vector2(0,0)
+var max_spawn_range = 1000;
 
 var melee_enemy = preload("res://objects/enemy/melee_enemy.tscn");
 var ranged_enemy = preload("res://objects/enemy/ranged_enemy.tscn");
@@ -28,11 +29,10 @@ func set_player_pos(pos : Vector2):
 			child.set_target(pos)
 
 func _on_timer_timeout():
-	print(self.global_position, player_pos);
-	if((self.global_position - player_pos).length() < 500):
+	if((self.global_position - player_pos).length() < max_spawn_range):
 		return;
 
 	var enemy = melee_enemy.instantiate()
-	enemy.set_global_position(Vector2(randi_range(0, 400), randi_range(0, 400)));
+	enemy.set_global_position(Vector2(0, 0));
 	add_child(enemy);
 	units.append(enemy)

@@ -9,7 +9,7 @@ var angular_force = 50000
 var linear_force = 5
 
 func _physics_process(delta: float) -> void:
-	velocity = (targetPos - position).normalized() * max_speed
+	velocity = (targetPos - global_position).normalized() * max_speed
 	move_and_slide()
 
 func set_target(pos: Vector2):
