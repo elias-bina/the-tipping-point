@@ -677,6 +677,66 @@ limit_right = 3205
 limit_bottom = 2560
 editor_draw_limits = true
 
+[node name="Gui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -800.0
+offset_top = -497.51
+offset_right = -800.0
+offset_bottom = -497.51
+scale = Vector2(1.5, 1.5)
+
+[node name="DashChargesGui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_cpkoq")
+
+[node name="DashChargesNbLabel" type="RichTextLabel" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 110.0
+offset_top = 594.0
+offset_right = 166.0
+offset_bottom = 623.0
+text = "1"
+
+[node name="DashChargedIcon" type="TextureRect" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 518.0
+offset_right = 1041.0
+offset_bottom = 1542.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("14_ayfbp")
+
+[node name="SwordChargesGui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.71
+offset_right = 152.71
+offset_bottom = 40.0
+script = ExtResource("15_7hkf3")
+
+[node name="SwordChargesNbLabel" type="RichTextLabel" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 110.0
+offset_top = 594.0
+offset_right = 166.0
+offset_bottom = 623.0
+text = "1"
+
+[node name="SwordChargedIcon" type="TextureRect" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui"]
+layout_mode = 0
+offset_left = 8.305
+offset_top = 518.0
+offset_right = 1032.31
+offset_bottom = 1542.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("16_lf0ep")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSwarm/PlayerCursor"]
 shape = SubResource("CircleShape2D_gnfw4")
 
@@ -723,68 +783,13 @@ volume_db = -6.438
 stream = ExtResource("12_woopa")
 volume_db = -4.457
 
-[node name="Gui" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-
-[node name="DashChargesGui" type="Control" parent="Gui"]
-layout_mode = 2
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("13_cpkoq")
-
-[node name="DashChargesNbLabel" type="RichTextLabel" parent="Gui/DashChargesGui"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 110.0
-offset_top = 594.0
-offset_right = 166.0
-offset_bottom = 623.0
-text = "1"
-
-[node name="DashChargedIcon" type="TextureRect" parent="Gui/DashChargesGui"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 518.0
-offset_right = 1041.0
-offset_bottom = 1542.0
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("14_ayfbp")
-
-[node name="SwordChargesGui" type="Control" parent="Gui"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 112.71
-offset_right = 152.71
-offset_bottom = 40.0
-script = ExtResource("15_7hkf3")
-
-[node name="SwordChargesNbLabel" type="RichTextLabel" parent="Gui/SwordChargesGui"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 110.0
-offset_top = 594.0
-offset_right = 166.0
-offset_bottom = 623.0
-text = "1"
-
-[node name="SwordChargedIcon" type="TextureRect" parent="Gui/SwordChargesGui"]
-layout_mode = 0
-offset_left = 8.305
-offset_top = 518.0
-offset_right = 1032.31
-offset_bottom = 1542.0
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("16_lf0ep")
-
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
 [connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
 [connection signal="activate_shoot" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_shoot"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
-[connection signal="dash_update" from="PlayerSwarm" to="Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
-[connection signal="sword_update" from="PlayerSwarm" to="Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
+[connection signal="dash_update" from="PlayerSwarm" to="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
+[connection signal="sword_update" from="PlayerSwarm" to="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="PlayerSwarm/SwordCooldown" to="PlayerSwarm" method="_on_sword_cooldown_timeout"]
