@@ -1,17 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://chch6mgmujjnu"]
+[gd_scene load_steps=7 format=3 uid="uid://chch6mgmujjnu"]
 
 [ext_resource type="Script" path="res://objects/enemy/melee_enemy.gd" id="1_scvsh"]
-[ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/sprites/melee.png" id="2_wudyi"]
+[ext_resource type="Texture2D" uid="uid://dia3jrj62x25n" path="res://assets/sprites/spritesheet/full_19.png" id="3_88loa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xv3pk"]
+radius = 19.0
+
+[sub_resource type="Animation" id="Animation_h22us"]
+resource_name = "zenfjskelf"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full19:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_rmb6r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full19:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eyvvv"]
+_data = {
+"RESET": SubResource("Animation_rmb6r"),
+"zenfjskelf": SubResource("Animation_h22us")
+}
 
 [node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_scvsh")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(1.005, -11.335, 11.55, 7.775, -14.91, 7.995)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xv3pk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.899397, 0.313346, 0.428008, 1)
-show_behind_parent = true
-position = Vector2(5, -2)
-scale = Vector2(0.166366, 0.163102)
-texture = ExtResource("2_wudyi")
+[node name="Full19" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, -5.5)
+scale = Vector2(3.1875, 3.1875)
+texture = ExtResource("3_88loa")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eyvvv")
+}

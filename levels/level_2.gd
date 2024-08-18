@@ -7,7 +7,7 @@ var enemySpawners: Node = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	swarmNode = get_node("PlayerSwarm");
-	swarmNode.initialize_positions(Vector2(200,200), 1, 1, 1);
+	swarmNode.initialize_positions(Vector2(200,200), 1, 1, 0);
 	enemySpawners = get_node("EnemySpawners");
 	
 	for spawner in enemySpawners.get_children():
