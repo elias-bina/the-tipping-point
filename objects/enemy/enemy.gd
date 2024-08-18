@@ -5,7 +5,7 @@ class_name Enemy
 signal spawn_corpse(pos: Vector2, type: int)
 
 
-const max_speed: int = 20000
+var max_speed: int = 20000
 var max_hp: int = 1;
 var corpse_spawn_probability: float = 0.5
 var enemy_type = EnemyType.NONE;
