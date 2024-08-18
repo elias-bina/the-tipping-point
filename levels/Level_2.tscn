@@ -684,7 +684,7 @@ shape = SubResource("CircleShape2D_gnfw4")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerSwarm/PlayerCursor"]
 z_index = 4
-scale = Vector2(6, 6)
+scale = Vector2(4, 4)
 texture = ExtResource("10_bapw7")
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]

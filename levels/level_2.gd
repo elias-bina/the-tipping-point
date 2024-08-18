@@ -8,6 +8,7 @@ var enemySpawner: Node = null
 func _ready() -> void:
 	swarmNode = get_node("PlayerSwarm");
 	swarmNode.initialize_positions(get_viewport_rect().size, 1, 1, 1);
+	print(get_viewport_rect().size)
 	enemySpawner = get_node("EnemySpawner");
 	
 	swarmNode.player_move.connect(_on_player_move)
