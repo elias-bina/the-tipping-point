@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/shield.png" id="1_q6otd"]
 
 [node name="ShieldUnit" type="RigidBody2D"]
+z_index = 3
 script = ExtResource("1_gpuvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
