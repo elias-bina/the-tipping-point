@@ -711,7 +711,7 @@ one_shot = true
 
 [node name="DashChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("10_t61y0")
-volume_db = -13.867
+volume_db = -11.39
 
 [node name="SwordChargeGainSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("11_aopon")
@@ -794,6 +794,7 @@ texture = ExtResource("16_lf0ep")
 [connection signal="activate_shoot" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_shoot"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
+[connection signal="add_one_unit" from="EnemySpawner" to="PlayerSwarm" method="_on_enemy_spawner_add_one_unit"]
 [connection signal="dash_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/DashChargesGui" method="_on_player_swarm_dash_update"]
 [connection signal="sword_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/SwordChargesGui" method="_on_player_swarm_sword_update"]
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]

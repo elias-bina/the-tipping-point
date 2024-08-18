@@ -8,7 +8,6 @@ var melee_unit = preload("res://objects/unit/melee_unit.tscn");
 var ranged_unit = preload("res://objects/unit/ranged_unit.tscn");
 var shield_unit = preload("res://objects/unit/shield_unit.tscn");
 var units = [];
-var nb_of_units = 0;
 
 var unit_speed = 0.01;
 
@@ -42,8 +41,7 @@ var sword_charges: int = 1
 
 func initialize_positions(screen_range, nb_of_melee, nb_of_ranged, nb_of_shield):
 	randomize();
-	nb_of_units = nb_of_melee + nb_of_ranged + nb_of_shield;
-	print(nb_of_units);
+	var nb_of_units = nb_of_melee + nb_of_ranged + nb_of_shield;
 	for i in range(0, nb_of_units):
 		if(i < nb_of_melee):
 			units.append(melee_unit.instantiate());
@@ -76,7 +74,7 @@ func get_force_of_repulsion(_i, _units):
 	
 func _process(delta: float):
 	update_center_of_swarm(delta);
-	for i in range(0, nb_of_units):
+	for i in range(0, units.size()):
 		var velocity = rule(i, cursorNode.position) * swarm_attrction_factor;
 		units[i].set_linear_velocity(velocity);
 		
@@ -149,3 +147,15 @@ func _on_sword_cooldown_timeout() -> void:
 	if sword_charges < max_sword_charges:
 		$SwordCooldown.start()
 	sword_update.emit(sword_charges)
+
+
+func _on_enemy_spawner_add_one_unit(pos: Vector2, enemy_type: int) -> void:
+	var enemy_converted = null
+	match enemy_type:
+		EnemyType.MELEE:
+			enemy_converted = melee_unit.instantiate()
+
+	enemy_converted.set_global_position(pos)
+	call_deferred("add_child", enemy_converted)
+	units.append(enemy_converted)
+			
