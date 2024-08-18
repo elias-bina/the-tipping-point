@@ -30,7 +30,7 @@ func get_force_of_repulsion(i, units, center):
 
 func attack():
 	var slash = sword_slash.instantiate()
-	slash.set_global_position(Vector2(25,0))
+	slash.set_global_position(Vector2(40,0))
 	add_child(slash)
 
 func is_melee():

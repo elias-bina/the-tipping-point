@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://d1nr0ytg320wc" path="res://assets/SwordSlash.png" id="2_qjp7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhyyq"]
-size = Vector2(30, 62)
+size = Vector2(54, 96)
 
 [node name="SwordSlash" type="Node2D"]
 script = ExtResource("1_skjmc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.155, -0.552)
+position = Vector2(-0.00244617, -0.784548)
 rotation = 0.190241
-scale = Vector2(1.80842, 1.80842)
+scale = Vector2(3.05378, 3.05378)
 texture = ExtResource("2_qjp7w")
 
 [node name="SlashDurationTimer" type="Timer" parent="."]
@@ -24,7 +24,7 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, 0)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_vhyyq")
 
 [connection signal="timeout" from="SlashDurationTimer" to="." method="_on_slash_duration_timer_timeout"]

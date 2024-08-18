@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=23 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://02lgttc2my5d" path="res://assets/sfx/gun_pistol_shot_silenced_01.wav" id="8_hh3om"]
 [ext_resource type="AudioStream" uid="uid://cmf6bvljdeqml" path="res://assets/sfx/bullet_impact_concrete_brick_01.wav" id="9_k3wy7"]
 [ext_resource type="AudioStream" uid="uid://dol7u2cgs77an" path="res://assets/music/GamejamShortSong.wav" id="10_6a1h8"]
+[ext_resource type="Texture2D" uid="uid://cmdiuplrm813x" path="res://assets/Cursor.png" id="10_bapw7"]
 [ext_resource type="AudioStream" uid="uid://sbbf0yhk7co" path="res://assets/sfx/ui_menu_button_beep_08.wav" id="10_t61y0"]
 [ext_resource type="AudioStream" uid="uid://b4s0yhnuxpbvh" path="res://assets/sfx/voice_male_grunt_pain_death_04.wav" id="11_0xa3y"]
 [ext_resource type="AudioStream" uid="uid://dcnm5i378uf63" path="res://assets/sfx/knife_sharpen_01.wav" id="11_aopon"]
@@ -675,70 +676,16 @@ limit_left = -1850
 limit_top = -575
 limit_right = 3205
 limit_bottom = 2560
+position_smoothing_enabled = true
 editor_draw_limits = true
-
-[node name="Gui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -800.0
-offset_top = -497.51
-offset_right = -800.0
-offset_bottom = -497.51
-scale = Vector2(1.5, 1.5)
-
-[node name="DashChargesGui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui"]
-layout_mode = 2
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("13_cpkoq")
-
-[node name="DashChargesNbLabel" type="RichTextLabel" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 110.0
-offset_top = 594.0
-offset_right = 166.0
-offset_bottom = 623.0
-text = "1"
-
-[node name="DashChargedIcon" type="TextureRect" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 518.0
-offset_right = 1041.0
-offset_bottom = 1542.0
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("14_ayfbp")
-
-[node name="SwordChargesGui" type="Control" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 112.71
-offset_right = 152.71
-offset_bottom = 40.0
-script = ExtResource("15_7hkf3")
-
-[node name="SwordChargesNbLabel" type="RichTextLabel" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 110.0
-offset_top = 594.0
-offset_right = 166.0
-offset_bottom = 623.0
-text = "1"
-
-[node name="SwordChargedIcon" type="TextureRect" parent="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui"]
-layout_mode = 0
-offset_left = 8.305
-offset_top = 518.0
-offset_right = 1032.31
-offset_bottom = 1542.0
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("16_lf0ep")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSwarm/PlayerCursor"]
 shape = SubResource("CircleShape2D_gnfw4")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerSwarm/PlayerCursor"]
+z_index = 4
+scale = Vector2(6, 6)
+texture = ExtResource("10_bapw7")
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("6_3lfqt")
@@ -783,13 +730,71 @@ volume_db = -6.438
 stream = ExtResource("12_woopa")
 volume_db = -4.457
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Gui" type="Control" parent="CanvasLayer"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui"]
+layout_mode = 0
+offset_left = -0.666667
+offset_top = 354.667
+offset_right = 22.3333
+offset_bottom = 377.667
+scale = Vector2(0.7, 0.7)
+
+[node name="DashChargesGui" type="Control" parent="CanvasLayer/Gui/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("13_cpkoq")
+metadata/_edit_use_anchors_ = true
+
+[node name="DashChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/HBoxContainer/DashChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 90.605
+offset_top = 80.695
+offset_right = 146.605
+offset_bottom = 109.695
+text = "1"
+
+[node name="DashChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/HBoxContainer/DashChargesGui"]
+layout_mode = 1
+offset_right = 1024.0
+offset_bottom = 1024.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("14_ayfbp")
+
+[node name="SwordChargesGui" type="Control" parent="CanvasLayer/Gui/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("15_7hkf3")
+
+[node name="SwordChargesNbLabel" type="RichTextLabel" parent="CanvasLayer/Gui/HBoxContainer/SwordChargesGui"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+offset_left = 204.27
+offset_top = 80.695
+offset_right = 260.27
+offset_bottom = 109.695
+text = "1"
+
+[node name="SwordChargedIcon" type="TextureRect" parent="CanvasLayer/Gui/HBoxContainer/SwordChargesGui"]
+layout_mode = 1
+offset_left = 104.375
+offset_right = 1128.38
+offset_bottom = 1024.0
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("16_lf0ep")
+
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
 [connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
 [connection signal="activate_shoot" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_shoot"]
 [connection signal="move_horizontal_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_horizontal_update"]
 [connection signal="move_vertical_update" from="InputManager" to="PlayerSwarm" method="_on_input_manager_move_vertical_update"]
-[connection signal="dash_update" from="PlayerSwarm" to="PlayerSwarm/PlayerCursor/Camera2D/Gui/DashChargesGui" method="_on_player_swarm_dash_update"]
-[connection signal="sword_update" from="PlayerSwarm" to="PlayerSwarm/PlayerCursor/Camera2D/Gui/SwordChargesGui" method="_on_player_swarm_sword_update"]
+[connection signal="dash_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/DashChargesGui" method="_on_player_swarm_dash_update"]
+[connection signal="sword_update" from="PlayerSwarm" to="CanvasLayer/Gui/HBoxContainer/SwordChargesGui" method="_on_player_swarm_sword_update"]
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="PlayerSwarm/SwordCooldown" to="PlayerSwarm" method="_on_sword_cooldown_timeout"]
