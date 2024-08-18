@@ -645,7 +645,10 @@ tile_set = SubResource("TileSet_0poh6")
 position = Vector2(390, 80)
 scale = Vector2(1.09375, 1.09375)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("3_x4grm")]
+[node name="EnemySpawners" type="Node" parent="."]
+
+[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_x4grm")]
+position = Vector2(-1331, -172)
 
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("3_swjt7")
