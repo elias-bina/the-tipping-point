@@ -80,6 +80,21 @@ func get_force_of_repulsion(_i, _units):
 	
 func _process(delta: float):
 	update_center_of_swarm(delta);
+	
+	var j = 0
+	var killed = false
+	while j < units.size():
+		if units[j].should_die:
+			var unit = units[j]
+			units.pop_at(j)
+			unit.queue_free()
+			killed = true
+			j-=1
+		j+=1
+
+	if killed:
+		enroll_update.emit(units.size(), max_people_army)
+
 	for i in range(0, units.size()):
 		var velocity = rule(i, cursorNode.position) * swarm_attrction_factor;
 		units[i].set_linear_velocity(velocity);

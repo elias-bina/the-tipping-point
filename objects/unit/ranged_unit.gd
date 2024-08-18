@@ -7,6 +7,8 @@ var bullet_preload = preload("res://objects/projectiles/bullet.tscn");
 var bullet_speed: float = 3000
 
 func _ready() -> void:
+	var max_hp = 2
+	var curr_hp = 2
 	$AnimationPlayer.play("filsdepute")
 
 func get_force_of_repulsion(i, units, center):

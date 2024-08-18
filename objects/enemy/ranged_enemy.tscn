@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx8rudn30ie6"]
+[gd_scene load_steps=9 format=3 uid="uid://dx8rudn30ie6"]
 
 [ext_resource type="Script" path="res://objects/enemy/ranged_enemy.gd" id="1_blnds"]
-[ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/sprites/range.png" id="2_cpttf"]
 [ext_resource type="Texture2D" uid="uid://c6u10g8lb4qtf" path="res://assets/sprites/spritesheet/full_31.png" id="3_qmglm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_juv4i"]
 radius = 21.0238
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omjwt"]
+radius = 27.074
 
 [sub_resource type="Animation" id="Animation_w8p3x"]
 length = 0.001
@@ -39,21 +41,18 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_vgla7"]
+resource_name = "dowwn"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qrl7"]
 _data = {
 "RESET": SubResource("Animation_w8p3x"),
+"dowwn": SubResource("Animation_vgla7"),
 "enfin_putain": SubResource("Animation_s7xiq")
 }
 
 [node name="MeleeEnemy2" type="CharacterBody2D"]
 script = ExtResource("1_blnds")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.55, 0.55, 0.55, 1)
-show_behind_parent = true
-position = Vector2(6.36419, 6.70202)
-scale = Vector2(0.166366, 0.163102)
-texture = ExtResource("2_cpttf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 self_modulate = Color(0.485368, 0, 0.207082, 1)
@@ -66,7 +65,14 @@ scale = Vector2(2.8125, 2.8125)
 texture = ExtResource("3_qmglm")
 hframes = 4
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_omjwt")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4qrl7")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
