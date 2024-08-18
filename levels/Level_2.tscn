@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=32 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -24,6 +24,9 @@
 [ext_resource type="Script" path="res://levels/swarm_charge_bar.gd" id="18_p0hs4"]
 [ext_resource type="Script" path="res://objects/gui/gun_charges_gui.gd" id="18_smt2r"]
 [ext_resource type="Texture2D" uid="uid://cu0txuuhvb223" path="res://assets/sprites/target_t.png" id="21_aas52"]
+[ext_resource type="Texture2D" uid="uid://bmjyvdvbn1e24" path="res://assets/sprites/spritesheet/tex1_48x48_43c2fa15cdcd2b31_14.png" id="23_qbbjb"]
+[ext_resource type="Texture2D" uid="uid://cfs7elcpfdrxc" path="res://assets/sprites/spritesheet/tex1_56x56_8735c5aa1564e288_14.png" id="25_vq7ds"]
+[ext_resource type="Texture2D" uid="uid://b8f6scn5v64ju" path="res://assets/sprites/spritesheet/tex1_56x56_60d599d3d75e915f_14.png" id="26_1hrko"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd5t2"]
 texture = ExtResource("1_msaub")
@@ -710,7 +713,7 @@ shape = SubResource("CircleShape2D_gnfw4")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerSwarm/PlayerCursor"]
 z_index = 4
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture = ExtResource("10_bapw7")
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
@@ -854,6 +857,21 @@ offset_right = 1128.38
 offset_bottom = 1024.0
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("16_lf0ep")
+
+[node name="Tex148x4843c2Fa15Cdcd2b3114" type="Sprite2D" parent="CanvasLayer/Gui"]
+position = Vector2(56.6667, 308)
+scale = Vector2(0.156945, 0.164359)
+texture = ExtResource("23_qbbjb")
+
+[node name="Tex156x5660d599d3d75e915f14" type="Sprite2D" parent="CanvasLayer/Gui"]
+position = Vector2(278.667, 309.333)
+scale = Vector2(0.0870535, 0.0870535)
+texture = ExtResource("26_1hrko")
+
+[node name="Tex156x568735c5Aa1564e28814" type="Sprite2D" parent="CanvasLayer/Gui"]
+position = Vector2(167.333, 310)
+scale = Vector2(0.0907738, 0.0907738)
+texture = ExtResource("25_vq7ds")
 
 [node name="DashChargesGui" type="Control" parent="CanvasLayer/Gui"]
 layout_mode = 2
