@@ -59,6 +59,7 @@ var cursorNode : Node = null
 
 func _ready(): 
 	cursorNode = get_node("PlayerCursor");
+	print(cursorNode.to_string())
 	set_process(true);
 	dash_update.emit(dash_charges)
 

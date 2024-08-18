@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwcubel1h17cq" path="res://Isaac's_Room_1.webp" id="1_sdw6h"]
 [ext_resource type="Script" path="res://label.gd" id="3_f73k4"]
 [ext_resource type="PackedScene" uid="uid://cd65wwi4htatw" path="res://InputManager.tscn" id="4_w47bo"]
-[ext_resource type="PackedScene" uid="uid://b3h3cb36jn0o7" path="res://objects/enemy_spawner.tscn" id="5_q1a8k"]
-[ext_resource type="Texture2D" uid="uid://cmdiuplrm813x" path="res://assets/Cursor.png" id="7_g10x1"]
+[ext_resource type="PackedScene" uid="uid://dbpcnnhjmv17m" path="res://objects/enemy_spawner.tscn" id="5_q1a8k"]
 [ext_resource type="Script" path="res://objects/player_swarm.gd" id="7_jmmy2"]
 [ext_resource type="AudioStream" uid="uid://bo0n1mfdu0d5o" path="res://assets/sfx/Sword 6.mp3" id="7_xksju"]
 [ext_resource type="AudioStream" uid="uid://dmgvht355n2cr" path="res://assets/sfx/FA_Whoosh_1_1.wav" id="9_0qmic"]
@@ -20,6 +19,9 @@
 [ext_resource type="Script" path="res://objects/gui/dash_charges_gui.gd" id="16_wfalr"]
 [ext_resource type="Script" path="res://objects/gui/sword_charges_gui.gd" id="17_as0k7"]
 [ext_resource type="Texture2D" uid="uid://cgpillkiaskvj" path="res://assets/war_t.png" id="18_e8plp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxhh0"]
+radius = 7.0
 
 [node name="GameRoom" type="Node2D"]
 script = ExtResource("1_gk63y")
@@ -46,12 +48,16 @@ script = ExtResource("3_f73k4")
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("7_jmmy2")
 
-[node name="PlayerCursor" type="Sprite2D" parent="PlayerSwarm"]
+[node name="PlayerCursor" type="CharacterBody2D" parent="PlayerSwarm"]
 top_level = true
 z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("7_g10x1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSwarm/PlayerCursor"]
+shape = SubResource("CircleShape2D_sxhh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerSwarm/PlayerCursor"]
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="PlayerSwarm"]
 stream = ExtResource("7_xksju")
