@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dajobbh0rl5jw"]
+[gd_scene load_steps=5 format=3 uid="uid://bytgdoke0axr7"]
 
-[ext_resource type="Script" path="res://objects/unit/melee_unit.gd" id="1_y726m"]
+[ext_resource type="Script" path="res://objects/unit/melee_unit.gd" id="1_v5oqa"]
 [ext_resource type="Texture2D" uid="uid://cul2oh6ah2538" path="res://assets/melee.png" id="2_o8xij"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hipew"]
@@ -12,7 +12,7 @@ radius = 109.073
 [node name="MeleeUnit" type="RigidBody2D"]
 z_index = 3
 collision_layer = 3
-script = ExtResource("1_cvpc6")
+script = ExtResource("1_v5oqa")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(1.005, -11.335, 11.55, 7.775, -14.91, 7.995)
