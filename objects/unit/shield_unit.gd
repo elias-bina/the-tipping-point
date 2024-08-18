@@ -7,15 +7,12 @@ func get_force_of_repulsion(i, units, center):
 	for j in range(0, units.size()): 
 		if i == j:
 			continue;
-			
-		if units[j].is_melee():
-			continue;
 		
 		var distance_between_boids = units[i].get_global_position() - units[j].get_global_position();
 		if distance_between_boids.length() < 30:
 			
-			if units[j].is_shield():
-				amount_of_wrong_neighbors += 0.8;
+			if units[j].is_melee():
+				amount_of_wrong_neighbors += 0.6;
 			else: amount_of_wrong_neighbors += 1;
 		
 	if(amount_of_wrong_neighbors >= 4):
@@ -23,5 +20,5 @@ func get_force_of_repulsion(i, units, center):
 		
 	return Vector2(0, 0);
 
-func is_shield():
+func is_melee():
 	return true;

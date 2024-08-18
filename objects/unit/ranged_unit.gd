@@ -19,3 +19,4 @@ func get_force_of_repulsion(i, units, center):
 
 func is_ranged():
 	return true;
+	

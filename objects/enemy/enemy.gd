@@ -2,15 +2,29 @@ extends CharacterBody2D
 
 class_name Enemy
 
-const max_speed = 200
+const max_speed: int = 200
+var max_hp: int = 1;
 
 var targetPos: Vector2 = Vector2(0,0)
-var angular_force = 50000
-var linear_force = 5
+var curr_hp: int = max_hp
+
+func _init() -> void:
+	curr_hp = max_hp
 
 func _physics_process(delta: float) -> void:
 	velocity = (targetPos - position).normalized() * max_speed
 	move_and_slide()
+
+
+
+func take_hit(nb_hp: int):
+	curr_hp -= nb_hp
+	if curr_hp <= 0:
+		$/root/GameRoom/EnemyDeathSound.play()
+		queue_free()
+	else :
+		$/root/GameRoom/EnemyHurtSound.play()
+
 
 func set_target(pos: Vector2):
 	targetPos = pos

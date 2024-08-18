@@ -15,10 +15,6 @@ func _ready() -> void:
 	print(get_tree_string())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func set_player_pos(pos : Vector2):
 	player_pos = pos

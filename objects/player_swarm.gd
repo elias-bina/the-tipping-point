@@ -1,6 +1,8 @@
 extends Node
 
-signal player_move(pos : Vector2)
+signal player_move(pos: Vector2)
+signal dash_update(nb_charges: int)
+signal sword_update(nb_charges: int)
 
 var melee_unit = preload("res://objects/unit/melee_unit.tscn");
 var ranged_unit = preload("res://objects/unit/ranged_unit.tscn");
@@ -30,6 +32,14 @@ var prev_velocity: Vector2 =  Vector2(0.0, 0.0)
 var curr_velocity: Vector2 =  Vector2(0.0, 0.0)
 var target_velocity: Vector2 =  Vector2(0.0, 0.0)
 
+## ------------- Actions vars -------------
+
+var max_dash_charges: int = 1
+var dash_charges: int = 1
+
+var max_sword_charges: int = 1
+var sword_charges: int = 1
+
 func initialize_positions(screen_range, nb_of_melee, nb_of_ranged, nb_of_shield):
 	randomize();
 	nb_of_units = nb_of_melee + nb_of_ranged + nb_of_shield;
@@ -50,7 +60,8 @@ var cursorNode : Node = null
 func _ready(): 
 	cursorNode = get_node("PlayerCursor");
 	set_process(true);
-	
+	dash_update.emit(dash_charges)
+
 
 func rule(i: int, center: Vector2):
 	var unit = units[i];
@@ -58,7 +69,7 @@ func rule(i: int, center: Vector2):
 	return direction_to_center;
 	
 
-func get_force_of_repulsion(i, units):
+func get_force_of_repulsion(_i, _units):
 	printerr("ABSTRACT FUNCTION CALLED");
 
 	
@@ -93,16 +104,47 @@ func _on_input_manager_move_horizontal_update(move_x: float) -> void:
 
 
 func _on_input_manager_activate_dash() -> void:
-	curr_velocity = depl_dir.normalized() * dash_speed
+	if dash_charges > 0 :
+		$DashSound.play()
+		curr_velocity = depl_dir.normalized() * dash_speed
+		dash_charges -= 1
+		dash_update.emit(dash_charges)
+		$DashCooldown.start()
 
 
 func _on_input_manager_activate_attack() -> void:
-	print("attack")
+	if sword_charges > 0:
+		$SlashSound.play()
+		for unit in units:
+			if unit is MeleeUnit:
+				#TODO: Viser ennemi
+				unit.attack()
+		sword_charges -= 1
+		sword_update.emit(sword_charges)
+		$SwordCooldown.start()
 
 
 func _on_input_manager_activate_parry() -> void:
+	$ParrySound.play()
 	print("parry")
 
 
 func _on_input_manager_activate_shoot() -> void:
+	$ShotSound.play()
 	print("shoot")
+
+
+func _on_dash_cooldown_timeout() -> void:
+	dash_charges += 1
+	$DashChargeGainSound.play()
+	if dash_charges < max_dash_charges:
+		$DashCooldown.start()
+	dash_update.emit(dash_charges)
+
+
+func _on_sword_cooldown_timeout() -> void:
+	sword_charges += 1
+	$SwordChargeGainSound.play()
+	if sword_charges < max_sword_charges:
+		$SwordCooldown.start()
+	sword_update.emit(sword_charges)
