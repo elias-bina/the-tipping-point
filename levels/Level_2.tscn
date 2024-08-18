@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=36 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -27,6 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://bmjyvdvbn1e24" path="res://assets/sprites/spritesheet/tex1_48x48_43c2fa15cdcd2b31_14.png" id="23_qbbjb"]
 [ext_resource type="Texture2D" uid="uid://cfs7elcpfdrxc" path="res://assets/sprites/spritesheet/tex1_56x56_8735c5aa1564e288_14.png" id="25_vq7ds"]
 [ext_resource type="Texture2D" uid="uid://b8f6scn5v64ju" path="res://assets/sprites/spritesheet/tex1_56x56_60d599d3d75e915f_14.png" id="26_1hrko"]
+[ext_resource type="Script" path="res://levels/game_over.gd" id="28_m1lv2"]
+[ext_resource type="AudioStream" uid="uid://c8a3ac4tosxf2" path="res://assets/music/Result Screen (E-Rank) - Sonic Unleashed [OST].mp3" id="29_pkliy"]
+[ext_resource type="AudioStream" uid="uid://olfk67e05el1" path="res://assets/music/エミール ショップ.mp3" id="30_tecnt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd5t2"]
 texture = ExtResource("1_msaub")
@@ -652,6 +655,11 @@ font_size = 30
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8wtnl"]
+font_size = 36
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="GameRoom" type="Node2D"]
 script = ExtResource("1_8cv4g")
 
@@ -772,6 +780,7 @@ volume_db = -4.457
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Gui" type="Control" parent="CanvasLayer"]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -899,6 +908,32 @@ offset_bottom = 1024.0
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("14_ayfbp")
 
+[node name="GameOver" type="Control" parent="CanvasLayer/Gui"]
+process_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("28_m1lv2")
+
+[node name="MusicFail" type="AudioStreamPlayer" parent="CanvasLayer/Gui/GameOver"]
+process_mode = 2
+stream = ExtResource("29_pkliy")
+
+[node name="EndGameLabel" type="Label" parent="CanvasLayer/Gui/GameOver"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 55.0
+offset_right = 767.0
+offset_bottom = 314.0
+label_settings = SubResource("LabelSettings_8wtnl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="MusiqueReussit" type="AudioStreamPlayer" parent="CanvasLayer/Gui/GameOver"]
+stream = ExtResource("30_tecnt")
+
 [connection signal="activate_attack" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_attack"]
 [connection signal="activate_dash" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_dash"]
 [connection signal="activate_parry" from="InputManager" to="PlayerSwarm" method="_on_input_manager_activate_parry"]
@@ -912,3 +947,5 @@ texture = ExtResource("14_ayfbp")
 [connection signal="timeout" from="PlayerSwarm/DashCooldown" to="PlayerSwarm" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="PlayerSwarm/SwordCooldown" to="PlayerSwarm" method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="PlayerSwarm/GunCooldown" to="PlayerSwarm" method="_on_gun_cooldown_timeout"]
+[connection signal="game_lost" from="CanvasLayer/Gui/SwarmChargeBar" to="CanvasLayer/Gui/GameOver" method="_on_swarm_charge_bar_game_lost"]
+[connection signal="game_won" from="CanvasLayer/Gui/SwarmChargeBar" to="CanvasLayer/Gui/GameOver" method="_on_swarm_charge_bar_game_won"]

@@ -14,3 +14,8 @@ func _ready() -> void:
 
 func is_melee():
 	return true;
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Unit:
+		body.take_hit(2)
