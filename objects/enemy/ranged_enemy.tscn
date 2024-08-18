@@ -1,9 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx8rudn30ie6"]
+[gd_scene load_steps=8 format=3 uid="uid://dx8rudn30ie6"]
 
 [ext_resource type="Script" path="res://objects/enemy/ranged_enemy.gd" id="1_blnds"]
 [ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/sprites/range.png" id="2_cpttf"]
+[ext_resource type="Texture2D" uid="uid://c6u10g8lb4qtf" path="res://assets/sprites/spritesheet/full_31.png" id="3_qmglm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_juv4i"]
+radius = 21.0238
+
+[sub_resource type="Animation" id="Animation_s7xiq"]
+resource_name = "enfin_putain"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full31:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_w8p3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full31:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qrl7"]
+_data = {
+"RESET": SubResource("Animation_w8p3x"),
+"enfin_putain": SubResource("Animation_s7xiq")
+}
 
 [node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_blnds")
@@ -18,3 +58,15 @@ texture = ExtResource("2_cpttf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 self_modulate = Color(0.485368, 0, 0.207082, 1)
 shape = SubResource("CircleShape2D_juv4i")
+
+[node name="Full31" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-0.499999, -1.5)
+scale = Vector2(2.8125, 2.8125)
+texture = ExtResource("3_qmglm")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4qrl7")
+}

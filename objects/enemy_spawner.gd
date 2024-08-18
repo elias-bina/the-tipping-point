@@ -9,7 +9,13 @@ var ranged_enemy = preload("res://objects/enemy/ranged_enemy.tscn");
 var shield_enemy = preload("res://objects/enemy/shield_enemy.tscn");
 
 var melee_corpse = preload("res://objects/enemy/corpses/melee_corpse.tscn");
+var ranged_corpse = preload("res://objects/enemy/corpses/ranged_corpse.tscn");
 
+
+var proba_melee = 0.5
+var proba_ranged = 0.1 
+
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,18 +35,29 @@ func _on_timer_timeout():
 	
 	if((self.global_position - player_pos).length() < 500):
 		return;
-		
-	var enemy = melee_enemy.instantiate()
-	enemy.set_global_position(Vector2(randi_range(0, 400), randi_range(0, 400)))
+	
+	var rand = rng.randf_range(0, proba_melee + proba_ranged)
+	
+	var enemy = null
+	if rand < proba_melee:
+		enemy = melee_enemy.instantiate()
+	else:
+		enemy = ranged_enemy.instantiate()
+	
+	enemy.set_global_position(Vector2(randi_range(0, 200), randi_range(0, 200)))
 	enemy.spawn_corpse.connect(_on_spawn_corpse)
 	call_deferred("add_child", enemy)
 
 
 func _on_spawn_corpse(pos:Vector2, enemy_type: int):
 	var corpse = null
-	if(enemy_type == EnemyType.MELEE):
-		corpse = melee_corpse.instantiate()
-		corpse.set_global_position(pos);
+	match enemy_type:
+		EnemyType.MELEE:
+			corpse = melee_corpse.instantiate()
+			corpse.set_global_position(pos)
+		EnemyType.RANGED:
+			corpse = ranged_corpse.instantiate()
+			corpse.set_global_position(pos)
 	
 	corpse.add_one_unit.connect(_on_unit_add_request)
 	call_deferred("add_child", corpse)
