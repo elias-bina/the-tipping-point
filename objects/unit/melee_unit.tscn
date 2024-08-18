@@ -10,6 +10,7 @@ radius = 16.0
 radius = 109.073
 
 [node name="MeleeUnit" type="RigidBody2D"]
+z_index = 3
 collision_layer = 3
 script = ExtResource("1_cvpc6")
 
