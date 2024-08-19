@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://cnic7fuvd2fey"]
+[gd_scene load_steps=37 format=4 uid="uid://cnic7fuvd2fey"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_8cv4g"]
 [ext_resource type="Texture2D" uid="uid://wpyn0ap24nc5" path="res://assets/tilemaps/tilemap.png" id="1_msaub"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://objects/player_swarm.gd" id="3_swjt7"]
 [ext_resource type="PackedScene" uid="uid://dbpcnnhjmv17m" path="res://objects/enemy_spawner.tscn" id="3_x4grm"]
 [ext_resource type="AudioStream" uid="uid://bo0n1mfdu0d5o" path="res://assets/sfx/Sword 6.mp3" id="6_3lfqt"]
+[ext_resource type="Texture2D" uid="uid://cnr60u2tusogc" path="res://assets/sprites/range.png" id="7_dsumn"]
 [ext_resource type="AudioStream" uid="uid://dmgvht355n2cr" path="res://assets/sfx/FA_Whoosh_1_1.wav" id="7_yexb1"]
 [ext_resource type="AudioStream" uid="uid://02lgttc2my5d" path="res://assets/sfx/gun_pistol_shot_silenced_01.wav" id="8_hh3om"]
 [ext_resource type="AudioStream" uid="uid://cmf6bvljdeqml" path="res://assets/sfx/bullet_impact_concrete_brick_01.wav" id="9_k3wy7"]
@@ -701,6 +702,14 @@ metadata/spawn_pos = Vector2(-1055, -242)
 [node name="PlayerSwarm" type="Node" parent="."]
 script = ExtResource("3_swjt7")
 
+[node name="Barycenter" type="Sprite2D" parent="PlayerSwarm"]
+visible = false
+z_index = 15
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("7_dsumn")
+offset = Vector2(-37.845, 42.48)
+flip_h = true
+
 [node name="PlayerCursor" type="CharacterBody2D" parent="PlayerSwarm"]
 scale = Vector2(0.414063, 0.414063)
 collision_layer = 4
@@ -911,7 +920,7 @@ scale = Vector2(0.11, 0.11)
 texture = ExtResource("14_ayfbp")
 
 [node name="GameOver" type="Control" parent="CanvasLayer/Gui"]
-process_mode = 2
+process_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

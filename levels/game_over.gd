@@ -11,7 +11,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("restart"):
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = not get_tree().paused
+		
+	if Input.is_action_just_pressed("restart") and get_tree().paused:
 		get_tree().paused = false
 		get_tree().reload_current_scene()
 

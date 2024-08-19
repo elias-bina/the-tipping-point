@@ -17,7 +17,7 @@ var unit_speed = 0.01;
 
 ## ------------- Swarm vars -------------
 
-const swarm_attrction_factor = 7
+const swarm_attraction_factor = 7
 
 ## ------------- Cursor vars -------------
 
@@ -68,16 +68,21 @@ func _ready():
 	dash_update.emit(dash_charges)
 
 
-func rule(i: int, center: Vector2):
-	var unit = units[i];
-	var direction_to_center = center - unit.get_global_position();
-	return direction_to_center;
-	
 
-func get_force_of_repulsion(_i, _units):
-	printerr("ABSTRACT FUNCTION CALLED");
+func move_swarm_to_center():
+	var barycenter: Vector2 = Vector2(0, 0)
+	for unit in units:
+		barycenter += unit.position
+	barycenter /= units.size()
 
+	$Barycenter.position = barycenter
 	
+	for unit in units:
+		var velocity = ((cursorNode.position - unit.get_global_position()) + unit.get_velocity_modifier(barycenter)) * swarm_attraction_factor
+		unit.set_linear_velocity(velocity);
+		
+
+
 func _process(delta: float):
 	update_center_of_swarm(delta);
 	
@@ -94,13 +99,9 @@ func _process(delta: float):
 
 	if killed:
 		enroll_update.emit(units.size(), max_people_army)
-
-	for i in range(0, units.size()):
-		var velocity = rule(i, cursorNode.position) * swarm_attrction_factor;
-		units[i].set_linear_velocity(velocity);
 		
-		var force_of_repulsion = units[i].get_force_of_repulsion(i, units, cursorNode.position);
-		units[i].apply_central_force(force_of_repulsion);
+	move_swarm_to_center()
+
 
 
 func update_center_of_swarm(delta: float):

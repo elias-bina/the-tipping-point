@@ -46,6 +46,7 @@ _data = {
 
 [node name="RangedUnit" type="RigidBody2D"]
 z_index = 3
+gravity_scale = 0.0
 script = ExtResource("1_if5kw")
 
 [node name="Full26" type="Sprite2D" parent="."]

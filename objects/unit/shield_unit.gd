@@ -1,24 +1,40 @@
-extends "res://objects/unit/unit.gd"
+extends Unit
 
-func get_force_of_repulsion(i, units, center):
-	var velocity_outwards_center = units[i].get_global_position() - center;
-	var amount_of_wrong_neighbors = 0;
+class_name ShieldUnit
+
+var units_neighbors = []
+
+const repulstion_rate: int = 180
+const reposition_rate: int = 200
+
+
+
+func get_velocity_modifier(center):
+	var dir_to_center: Vector2 = center - position
+	var nb_wrong_neighbor: int = 0
+	var nb_meh_neighbor: int = 0
+	for unit in units_neighbors:
+		if unit is not ShieldUnit:
+			if dir_to_center.dot(unit.position - position) < 0:
+				nb_wrong_neighbor += 1
+		else:
+			if dir_to_center.dot(unit.position - position) < 0:
+				nb_meh_neighbor = 1
 	
-	for j in range(0, units.size()): 
-		if i == j:
-			continue;
-		
-		var distance_between_boids = units[i].get_global_position() - units[j].get_global_position();
-		if distance_between_boids.length() < 30:
-			
-			if units[j].is_melee():
-				amount_of_wrong_neighbors += 0.6;
-			else: amount_of_wrong_neighbors += 1;
-		
-	if(amount_of_wrong_neighbors >= 4):
-		return velocity_outwards_center * amount_of_wrong_neighbors * 50;
-		
-	return Vector2(0, 0);
+	
+	return -dir_to_center.normalized() * nb_wrong_neighbor * repulstion_rate + \
+		   -dir_to_center.normalized().rotated(- PI / 3) * nb_meh_neighbor * reposition_rate;
 
-func is_melee():
-	return true;
+
+func _on_entity_detection_range_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		look_at(body.global_position)
+	
+	if body is Unit and body != self:
+		units_neighbors.append(body)
+
+
+
+func _on_entity_detection_range_body_exited(body: Node2D) -> void:
+	if body is Unit and body != self:
+		units_neighbors.erase(body)

@@ -2,15 +2,6 @@ extends RigidBody2D
 
 class_name Unit
 
-func is_melee():
-	return false;
-	
-func is_ranged():
-	return false;
-	
-func is_shield():
-	return false;
-
 var curr_hp = 3
 var max_hp = 3
 
@@ -20,7 +11,7 @@ func take_hit(nb_hp: int):
 	curr_hp -= nb_hp
 	if curr_hp <= 0:
 		$/root/GameRoom/EnemyDeathSound.play()
-		should_die = true
+		#should_die = trues
 	else :
 		$/root/GameRoom/EnemyHurtSound.play()
 
