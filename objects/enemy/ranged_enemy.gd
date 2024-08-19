@@ -22,3 +22,4 @@ func is_ranged():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Unit:
 		body.take_hit(1)
+		take_hit(0.5)

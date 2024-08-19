@@ -17,12 +17,12 @@ var unit_speed = 0.01;
 
 ## ------------- Swarm vars -------------
 
-const swarm_attrction_factor = 5
+const swarm_attrction_factor = 7
 
 ## ------------- Cursor vars -------------
 
 const base_speed: int = 400
-const dash_speed: int = 2500
+const dash_speed: int = 4000
 var curr_speed: int = 400
 
 const acceleration_frames: int = 10
