@@ -13,7 +13,7 @@ var ranged_corpse = preload("res://objects/enemy/corpses/ranged_corpse.tscn");
 
 
 var proba_melee = 1
-var proba_ranged = 0.15 
+var proba_ranged = 0.3 
 
 var rng = RandomNumberGenerator.new()
 

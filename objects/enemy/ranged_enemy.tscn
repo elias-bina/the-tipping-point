@@ -24,6 +24,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_vgla7"]
+resource_name = "dowwn"
+
 [sub_resource type="Animation" id="Animation_s7xiq"]
 resource_name = "enfin_putain"
 length = 0.8
@@ -40,9 +43,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
-
-[sub_resource type="Animation" id="Animation_vgla7"]
-resource_name = "dowwn"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qrl7"]
 _data = {

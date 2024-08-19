@@ -19,3 +19,4 @@ func is_melee():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Unit:
 		body.take_hit(2)
+		take_hit(0.5)

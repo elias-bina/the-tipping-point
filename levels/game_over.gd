@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("restart"):
 		get_tree().paused = false
 		get_tree().reload_current_scene()
@@ -25,4 +25,4 @@ func _on_swarm_charge_bar_game_lost(time: int) -> void:
 func _on_swarm_charge_bar_game_won(time: int) -> void:
 	get_tree().paused = true
 	$MusiqueReussit.play()
-	label.text = "You WON in %d Seconds !!!!!\nPress R / Start to Retry with a better score"
+	label.text = "You WON in %d Seconds !!!!!\nPress R / Start to Retry with a better score" % time
